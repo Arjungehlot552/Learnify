@@ -33,7 +33,7 @@ const ProjectIdea = () => {
 
   return (
     <div className="flex items-center justify-center h-fit w-full pt-20 flex-wrap">
-      <div className="flex gap-12 items-center justify-start px-40 h-fit flex-wrap">
+      <div className="flex gap-12 items-center justify-start px-28 h-fit flex-wrap">
       <Card />
       <Card />
       <Card />
