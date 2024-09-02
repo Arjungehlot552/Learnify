@@ -8,7 +8,7 @@ const ProjectIdea = () => {
       <div>
         <div
           style={{ boxShadow: "0 0 5px 0.5px gray" }}
-          className=" flex flex-col p-4 rounded-xl w-[300px] items-start justify-start gap-4 text-md"
+          className=" flex flex-col p-4 rounded-xl w-[350px] items-start justify-start gap-4 text-md"
         >
           <p className="w-full flex items-center justify-center text-center text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-gray-500 to-red-500">
             Word to Url Converter
