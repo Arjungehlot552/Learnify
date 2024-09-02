@@ -11,10 +11,10 @@ const ShortProjectDisplay = () => {
       {/*key={pro.id} to={`/projects/${pro.id}`}*/}
       <div
         style={{ boxShadow: "0 0 5px 0.2px blue" }}
-        className="h-[500px] w-96 rounded-lg flex flex-col items-center justify-start gap-5 p-5"
+        className="h-[400px] w-80 rounded-lg flex flex-col items-center justify-start gap-5 p-5"
       >
         <img
-          className="h-[40%] w-[100%] object-cover shadow-md rounded-lg "
+          className="h-[35%] w-[100%] object-cover shadow-md rounded-lg "
           src={img1}
           alt=""
         />
