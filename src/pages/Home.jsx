@@ -48,7 +48,7 @@ const Home = () => {
       </div>
     </div>
     <div>
-      <Search/>
+    <Search/>
     <ProjectCards/>
     <IdeaDisplay/>
     <MentorHome/>
