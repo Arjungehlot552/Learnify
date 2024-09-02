@@ -6,10 +6,13 @@ const ProjectIdea = () => {
   const Card = () => {
     return (
       <div>
-        <div style={{boxShadow: "0 0 5px 0.5px gray"}} className=" flex flex-col p-4 rounded-xl w-[400px] items-start justify-start gap-4 text-md">
-        <p className="w-full flex items-center justify-center text-center text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-gray-500 to-red-500">
-  Word to Url Converter
-</p>
+        <div
+          style={{ boxShadow: "0 0 5px 0.5px gray" }}
+          className=" flex flex-col p-4 rounded-xl w-[300px] items-start justify-start gap-4 text-md"
+        >
+          <p className="w-full flex items-center justify-center text-center text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-gray-500 to-red-500">
+            Word to Url Converter
+          </p>
 
           <p>
             <b className="text-lg">Posted by: </b>zyz@gmail.com
@@ -25,20 +28,23 @@ const ProjectIdea = () => {
             dolore aliquam officia, voluptatum a eveniet deserunt minus, iste
             quisquam voluptatem explicabo, impedit saepe quis laborum.
           </p>
-          <p> <b>Requirements:</b> MongoDB,ReactJS </p>
+          <p>
+            {" "}
+            <b>Requirements:</b> MongoDB,ReactJS{" "}
+          </p>
         </div>
       </div>
     );
   };
 
   return (
-    <div className="flex items-center justify-center h-fit w-full pt-20 flex-wrap">
-      <div className="flex gap-12 items-center justify-start px-28 h-fit flex-wrap">
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+    <div className="flex h-fit w-full pt-20">
+      <div className="flex gap-12 items-start justify-center mx-28 h-fit flex-wrap">
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
       </div>
     </div>
   );

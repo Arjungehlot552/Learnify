@@ -11,14 +11,14 @@ const ShortProjectDisplay = () => {
       {/*key={pro.id} to={`/projects/${pro.id}`}*/}
       <div
         style={{ boxShadow: "0 0 5px 0.2px blue" }}
-        className="h-[400px] w-80 rounded-lg flex flex-col items-center justify-start gap-5 p-5"
+        className="h-[400px] w-80 rounded-lg flex flex-col items-center justify-start gap-2 p-3"
       >
         <img
           className="h-[35%] w-[100%] object-cover shadow-md rounded-lg "
           src={img1}
           alt=""
         />
-        <div className="flex w-full flex-col gap-2 text-lg items-start justify-start">
+        <div className="flex w-full flex-col gap-2 text-md items-start justify-start">
          <p className="w-full text-center text-2xl text-blue-700 font-semibold">
            Advanced ChatGpt
           </p>
