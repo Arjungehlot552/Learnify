@@ -27,7 +27,6 @@ const IdeaDisplay = () => {
         </Link>
       </div>
     </div>
-    <div className=" w-full outline outline-1 outline-slate-50 mt-12"></div>
   </div>
   )
 }

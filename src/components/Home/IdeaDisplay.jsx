@@ -9,7 +9,7 @@ const IdeaDisplay = () => {
       <div style={{boxShadow: "0 0 5px 0.5px gray"}} className="h-fit p-6 w-full rounded-xl mt-8 flex  justify-between items-center gap-10">
         <div className=" w-[40%] h-fit object-cover">
           <img
-            className=" object-contain h-80 w-full rounded-xl"
+            className="object-contain h-80 w-full rounded-lg"
             src={img2}
             alt=""
           />
@@ -30,7 +30,6 @@ const IdeaDisplay = () => {
           </Link>
         </div>
       </div>
-      <div className=" w-full outline outline-1 outline-slate-50 mt-12"></div>
     </div>
   );
 };

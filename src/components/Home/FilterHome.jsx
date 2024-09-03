@@ -9,7 +9,7 @@ const Card = ({ img, title, description }) => {
   return (
     <div style={{boxShadow: "0 0 6px 1px gray"}} className="h-fit w-[30%] p-4 shadow-lg shadow-gray-400 rounded-xl mt-8 flex flex-col justify-left gap-8">
       <div>
-        <img className="h-60 rounded-md" src={img} alt="" />
+        <img className="h-60 rounded-md w-full" src={img} alt="" />
       </div>
       <div className="flex flex-col h-full tracking-wide justify-center items-center">
         <p className="text-xl font-semibold font-serif text-slate-600">

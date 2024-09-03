@@ -20,9 +20,11 @@ import Grievance from "./pages/Footer/Grievance.jsx";
 import Privacy from "./pages/Footer/Privacy.jsx";
 import Terms from "./pages/Footer/Terms.jsx";
 import UserGuidelines from "./pages/Footer/UserGuidelines.jsx";
+import ThemeProvider from "./context/ThemeContext.jsx";
 
 function App() {
   return (
+    <ThemeProvider>
       <Router>
         <Header />
         <Routes>
@@ -48,7 +50,7 @@ function App() {
         </Routes>
         <Footer />
       </Router>
-   
+    </ThemeProvider>
   );
 }
 
