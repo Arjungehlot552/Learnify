@@ -56,7 +56,7 @@ const Footer = () => {
               More
             </p>
             <div className=" flex flex-col gap-4 mt-4">
-              <Link to={'/blogs'}>
+              <Link to={'https://bloghive-lovat.vercel.app/'}>
                 <p>Blogs</p>
               </Link>
               <Link to={'/privacy'}>

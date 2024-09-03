@@ -38,8 +38,8 @@ const About = () => {
         </h2>
         <ul className="list-disc ml-6 text-lg">
           <li className="mb-2">
-            A platform to upload and showcase projects from various domains and
-            institutions.
+            At Learnify, students can easily upload their academic projects,
+            research papers, and creative works.
           </li>
           <li className="mb-2">
             Search and filter functionality to discover projects based on
@@ -56,6 +56,14 @@ const About = () => {
           <li className="mb-2">
             Real-time notifications to keep users updated on the latest
             activities.
+          </li>
+          <li className="mb-2">
+            At Learnify, students can easily upload their academic projects,
+            research papers, and creative works.
+          </li>
+          <li className="mb-2">
+            To uphold academic integrity, Learnify incorporates plagiarism
+            checking tools and link verification mechanisms.
           </li>
         </ul>
       </section>

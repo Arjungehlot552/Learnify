@@ -13,7 +13,6 @@ import ProjectDisplay from './pages/ProjectDisplay';
 import ProjectDetail from './components/Cards/ProjectDetail';
 import ProjectIdea from "./components/Cards/ProjectIdea";
 import About from "./pages/Footer/About";
-import Blogs from "./pages/Footer/Blogs.jsx";
 import Careers from "./pages/Footer/Careers.jsx";
 import Contact from "./pages/Footer/Contact.jsx";
 import Grievance from "./pages/Footer/Grievance.jsx";
@@ -40,7 +39,6 @@ function App() {
         <Route path="/mentor" element={<Mentor/>}/>
         <Route path="/userguidelines" element={<UserGuidelines/>}/>
         <Route path="/about" element={<About/>}/>
-        <Route path="/blogs" element={<Blogs/>}/>
         <Route path="/careers" element={<Careers/>}/>
         <Route path="/contact" element={<Contact/>}/>
         <Route path="/grievance" element={<Grievance/>}/>
