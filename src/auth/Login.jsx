@@ -26,7 +26,7 @@ const Login = () => {
   const closeModal = () => setIsModalOpen(false); 
 
   return (
-    <div className="h-fit flex items-center justify-center py-10">
+    <div className="h-fit flex items-center justify-center pt-24">
       <div
         style={{ boxShadow: "0px 0px 10px 0.5px gray" }}
         className="h-fit py-10 w-[500px] rounded-xl shadow-black flex items-center justify-center gap-8 flex-col"

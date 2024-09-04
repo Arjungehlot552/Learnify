@@ -8,19 +8,19 @@ const IdeaForm = () => {
     title: "",
     description: "",
     requirements: "",
-    email: "",
+    name: "",
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { title, description, requirements, email } =
+    const { title, description, requirements, name } =
       formData;
 
     if (
       !title ||
       !description ||
       !requirements ||
-      !email
+      !name
     ) {
       toast.error("Please fill in all required fields.");
       return;
@@ -95,10 +95,10 @@ const IdeaForm = () => {
           />
           <input
             className="outline-1 outline outline-gray-400 shadow-inner rounded-xl w-full p-3"
-            type="email"
-            placeholder="Enter your valid email address"
-            id="email"
-            value={formData.email}
+            type="text"
+            placeholder="Enter your username"
+            id="text"
+            value={formData.name}
             onChange={handleChange}
             required
           />

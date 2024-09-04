@@ -8,6 +8,7 @@ import { MdOutlineMail } from "react-icons/md";
 import { MdOutlinePassword } from "react-icons/md";
 
 const StudentRegister = () => {
+  const[name,setName] = useState("")
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -41,6 +42,16 @@ const StudentRegister = () => {
         </p>
         <img src={logo} className="h-20 w-[300px] object-contain" alt="" />
         <div className="flex w-full px-10 flex-col items-center justify-center gap-5 mt-4">
+          <div className="relative w-full">
+            <input
+              className="shadow-inner shadow-red-700 rounded-xl h-12 w-full px-8 border-none outline-none "
+              type="email"
+              value={name}
+              placeholder="Enter Name"
+              onChange={(e) => setName(e.target.value)}
+            />
+            <MdOutlineMail className="absolute top-4 left-2 text-gray-500 font-bold" />
+          </div>
           <div className="relative w-full">
             <input
               className="shadow-inner shadow-red-700 rounded-xl h-12 w-full px-8 border-none outline-none "

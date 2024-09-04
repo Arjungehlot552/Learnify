@@ -1,6 +1,5 @@
 import React from 'react'
 import i1 from "../assets/home-illustration.svg";
-import { Link } from 'react-router-dom';
 import Search from '../components/Home/Search.jsx';
 import ProjectCards from '../components/Home/ProjectCards';
 import MentorHome from '../components/Home/MentorHome';
@@ -11,7 +10,7 @@ import IdeaDisplay from '../components/Home/IdeaDisplay.jsx';
 const Home = () => {
   return (
     <div className="px-40">
-    <div className=" w-full pt-12 h-fit my-16 flex justify-between">
+    <div className=" w-full pt-12 h-fit mt-16 flex justify-between">
       <div className="flex justify-start px-8 items-center  w-[50%]">
         <div className="flex flex-col">
           <p className=" text-4xl font-serif leading-relaxed font-bold text-slate-600">

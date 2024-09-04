@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import ScrollToTop from "../Other/ScrollToTop"
+import ScrollToTop from "../Other/ScrollToTop";
 
 const ProjectForm = () => {
-  ScrollToTop()
+  ScrollToTop();
   const [img1, setImg1] = useState(null);
   const [formData, setFormData] = useState({
-    userId: "",
+    name: "",
     projectName: "",
     domain: "",
     abstract: "",
@@ -17,8 +17,8 @@ const ProjectForm = () => {
   });
 
   const handleChange = (e) => {
-    setFormData(e.target.value)
-   };
+    setFormData(e.target.value);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -45,10 +45,10 @@ const ProjectForm = () => {
               </div>
               <input
                 className="border p-3 rounded-lg placeholder-black placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
-                type="email"
-                id="userId"
-                placeholder="Enter your logged in email"
-                value={formData.userId}
+                type="text"
+                id="name"
+                placeholder="Enter your username"
+                value={formData.name}
                 onChange={handleChange}
                 required
               />
@@ -143,23 +143,21 @@ const ProjectForm = () => {
                 </label>
               </div>
               <div className="flex justify-center">
-                     
-              <div className="mt-4 p-4 w-full rounded-xl outline outline-1 outline-gray-400 flex flex-col gap-4">
-                    <label htmlFor="images">
-                      <p className="text-xl font-semibold">
-                        Upload project related images [Image should be less than
-                        500KB]
-                      </p>
-                    </label>
-                    <input
-                      className="border p-3 rounded-lg placeholder-black placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
-                      type="file"
-                      id="images"
-                      required
-                      onChange={(event) => setImg1(event.target.files[0])}
-                    />
-                  </div>
-               
+                <div className="mt-4 p-4 w-full rounded-xl outline outline-1 outline-gray-400 flex flex-col gap-4">
+                  <label htmlFor="images">
+                    <p className="text-xl font-semibold">
+                      Upload project related images [Image should be less than
+                      500KB]
+                    </p>
+                  </label>
+                  <input
+                    className="border p-3 rounded-lg placeholder-black placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
+                    type="file"
+                    id="images"
+                    required
+                    onChange={(event) => setImg1(event.target.files[0])}
+                  />
+                </div>
               </div>
               <button
                 className="outline rounded-xl outline-blue-600 hover:bg-white bg-blue-700 hover:text-black font-bold text-white text-xl my-6 transition-all duration-300 py-2 px-3"

@@ -1,78 +1,106 @@
 import React from "react";
-import ScrollTotop from "../../components/Other/ScrollToTop";
+import ScrollToTop from "../../components/Other/ScrollToTop";
 
 const About = () => {
-  ScrollTotop();
+  ScrollToTop();
 
   return (
-    <div className="container mx-auto p-6 px-16">
-      <h1 className="w-full flex items-center justify-center text-center bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-pink to-blue-400 mb-8 font-bold text-8xl">
-        About Us
-      </h1>
+    <div className="container mx-auto px-6 py-16">
+      {/* Hero Section */}
+      <section className="text-center mb-16">
+        <h1 className=" text-4xl sm:text-6xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-red-500 to-blue-400">
+          About Us
+        </h1>
+        <p className="mt-6 text-lg sm:text-xl text-gray-600">
+          Discover more about Learnify, our mission, vision, and how we aim to
+          transform the academic landscape through collaboration and innovation.
+        </p>
+      </section>
 
-      <section className="mb-10 rounded-lg shadow-md shadow-red-400 h-fi p-4">
-        <h2 className="text-3xl font-bold mb-4 outline outline-blue-400 w-fit p-2 rounded text-blue-500 ">
+      {/* Our Mission */}
+      <section className="mb-16 p-8 bg-white rounded-lg shadow-lg">
+        <h2 className="text-4xl font-semibold text-blue-600 mb-4">
           Our Mission
         </h2>
-        <p className="text-lg mb-4">
+        <p className="text-lg text-gray-700 leading-relaxed">
           At Learnify, our mission is to create a collaborative platform where
           students and professionals can share, discover, and collaborate on
           projects from various domains and institutions. We believe that by
           providing a central hub for project sharing, we can prevent valuable
           work from being isolated and discarded, and instead, inspire
-          innovation and knowledge exchange. Learnify was conceived with a
-          singular vision: to create a centralized hub where students from
-          diverse colleges and universities can upload, share, and explore
-          projects, ideas, and academic achievements. We are committed to
-          preventing student projects from being isolated and underutilized by
-          providing a platform that encourages knowledge sharing and
-          collaboration. Our mission is to empower students by giving their work
-          the visibility it deserves and fostering a community where ideas can
-          thrive and inspire.
+          innovation and knowledge exchange.
         </p>
       </section>
 
-      <section className="mb-10 rounded-lg shadow-md shadow-red-400 h-fi p-4">
-        <h2 className="text-3xl font-bold mb-4 outline outline-blue-400 w-fit p-2 rounded text-blue-500 ">
+      {/* What We Offer */}
+      <section className="mb-16">
+        <h2 className="text-4xl font-semibold text-blue-600 text-center mb-12">
           What We Offer
         </h2>
-        <ul className="list-disc ml-6 text-lg">
-          <li className="mb-2">
-            At Learnify, students can easily upload their academic projects,
-            research papers, and creative works.
-          </li>
-          <li className="mb-2">
-            Search and filter functionality to discover projects based on
-            interests, colleges, and domains.
-          </li>
-          <li className="mb-2">
-            Mentorship opportunities where experienced professionals guide
-            students through their projects.
-          </li>
-          <li className="mb-2">
-            An admin panel for managing projects, users, and ensuring the
-            quality of content on the platform.
-          </li>
-          <li className="mb-2">
-            Real-time notifications to keep users updated on the latest
-            activities.
-          </li>
-          <li className="mb-2">
-            At Learnify, students can easily upload their academic projects,
-            research papers, and creative works.
-          </li>
-          <li className="mb-2">
-            To uphold academic integrity, Learnify incorporates plagiarism
-            checking tools and link verification mechanisms.
-          </li>
-        </ul>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="p-6 bg-white rounded-lg shadow-lg">
+            <h3 className="text-2xl font-bold text-blue-500 mb-4">
+              Project Upload
+            </h3>
+            <p className="text-lg text-gray-700 leading-relaxed">
+              Students can easily upload their academic projects, research
+              papers, and creative works.
+            </p>
+          </div>
+          <div className="p-6 bg-white rounded-lg shadow-lg">
+            <h3 className="text-2xl font-bold text-blue-500 mb-4">
+              Advanced Search
+            </h3>
+            <p className="text-lg text-gray-700 leading-relaxed">
+              Discover projects based on interests, colleges, and domains with
+              our advanced search and filter functionality.
+            </p>
+          </div>
+          <div className="p-6 bg-white rounded-lg shadow-lg">
+            <h3 className="text-2xl font-bold text-blue-500 mb-4">
+              Mentorship
+            </h3>
+            <p className="text-lg text-gray-700 leading-relaxed">
+              Connect with experienced professionals who can guide you through
+              your projects.
+            </p>
+          </div>
+          <div className="p-6 bg-white rounded-lg shadow-lg">
+            <h3 className="text-2xl font-bold text-blue-500 mb-4">
+              Admin Panel
+            </h3>
+            <p className="text-lg text-gray-700 leading-relaxed">
+              Manage projects, users, and ensure the quality of content on the
+              platform.
+            </p>
+          </div>
+          <div className="p-6 bg-white rounded-lg shadow-lg">
+            <h3 className="text-2xl font-bold text-blue-500 mb-4">
+              Real-time Notifications
+            </h3>
+            <p className="text-lg text-gray-700 leading-relaxed">
+              Stay updated with real-time notifications on the latest activities
+              and project updates.
+            </p>
+          </div>
+          <div className="p-6 bg-white rounded-lg shadow-lg">
+            <h3 className="text-2xl font-bold text-blue-500 mb-4">
+              Plagiarism Checking
+            </h3>
+            <p className="text-lg text-gray-700 leading-relaxed">
+              Ensure academic integrity with built-in plagiarism checking tools
+              and link verification mechanisms.
+            </p>
+          </div>
+        </div>
       </section>
 
-      <section className="mb-10 rounded-lg shadow-md shadow-red-400 h-fi p-4">
-        <h2 className="text-3xl font-bold mb-4 outline outline-blue-400 w-fit p-2 rounded text-blue-500 ">
+      {/* Our Vision */}
+      <section className="mb-16 p-8 bg-white rounded-lg shadow-lg">
+        <h2 className="text-4xl font-semibold text-blue-600 mb-4">
           Our Vision
         </h2>
-        <p className="text-lg mb-4">
+        <p className="text-lg text-gray-700 leading-relaxed">
           We envision a world where learning is not confined to classrooms and
           where collaboration transcends geographical boundaries. Learnify aims
           to be the bridge that connects students and professionals, fostering a
@@ -81,11 +109,12 @@ const About = () => {
         </p>
       </section>
 
-      <section className="mb-10 rounded-lg shadow-md shadow-red-400 h-fi p-4">
-        <h2 className="text-3xl font-bold mb-4 outline outline-blue-400 w-fit p-2 rounded text-blue-500 ">
+      {/* Our Team */}
+      <section className="mb-16 p-8 bg-white rounded-lg shadow-lg">
+        <h2 className="text-4xl font-semibold text-blue-600 mb-4">
           Our Team
         </h2>
-        <p className="text-lg mb-4">
+        <p className="text-lg text-gray-700 leading-relaxed">
           The Learnify team is a group of passionate individuals who are
           committed to revolutionizing how students and professionals interact
           and collaborate on projects. With a diverse background in technology,
@@ -94,31 +123,36 @@ const About = () => {
           community.
         </p>
       </section>
-      <section className="mb-10 rounded-lg shadow-md shadow-red-400 h-fi p-4">
-        <h2 className="text-3xl font-bold mb-4 outline outline-blue-400 w-fit p-2 rounded text-blue-500 ">
-          Join Us
-        </h2>
-        <p className="text-lg mb-4">
+
+      {/* Join Us */}
+      <section className="mb-16 p-8 bg-blue-50 rounded-lg shadow-lg text-center">
+        <h2 className="text-4xl font-semibold text-blue-600 mb-4">Join Us</h2>
+        <p className="text-lg text-gray-700 leading-relaxed mb-6">
           Whether you are a student eager to showcase your work, a mentor
           looking to guide the next generation of innovators, or an academic
           institution seeking to enhance visibility and collaboration, Learnify
           welcomes you. Join us in our mission to transform the academic
-          landscape and make knowledge sharing accessible to all. Explore
-          Learnify today and become part of a vibrant community dedicated to
-          learning, innovation, and collaboration.
+          landscape and make knowledge sharing accessible to all.
         </p>
+        <a
+          href="#"
+          className="inline-block bg-blue-600 text-white py-3 px-6 rounded-lg font-bold text-lg transition duration-300 ease-in-out hover:bg-blue-700"
+        >
+          Explore Learnify
+        </a>
       </section>
 
-      <section className="rounded-lg shadow-md shadow-red-400 h-fi p-4">
-        <h2 className="text-3xl font-bold mb-4 outline outline-blue-400 w-fit p-2 rounded text-blue-500 ">
+      {/* Get in Touch */}
+      <section className="p-8 bg-white rounded-lg shadow-lg">
+        <h2 className="text-4xl font-semibold text-blue-600 mb-4">
           Get in Touch
         </h2>
-        <p className="text-lg mb-4 ">
+        <p className="text-lg text-gray-700 leading-relaxed">
           We love hearing from our users! Whether you have a question,
           suggestion, or just want to say hello, feel free to reach out to us at{" "}
           <a
             href="mailto:support@learnify.com"
-            className="text-blue-500 underline"
+            className="text-blue-500 underline hover:text-blue-700"
           >
             support@learnify.com
           </a>

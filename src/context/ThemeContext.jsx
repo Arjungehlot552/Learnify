@@ -43,7 +43,7 @@ const ThemeProvider = ({ children }) => {
       },
       text: {
         light: "#000000",
-        dark: "#f0e7db", // Dark mode text color
+        dark: "#ededf9", // Dark mode text color
       },
     },
     styles: {

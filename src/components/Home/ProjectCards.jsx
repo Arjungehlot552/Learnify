@@ -35,7 +35,7 @@ const ProjectCards = () => {
   };
 
   return (
-    <div style={{boxShadow: "0 0 5px 0.5px gray"}} className="mt-12 p-4 shadow-xl rounded-xl">
+    <div style={{boxShadow: "0 0 5px 0.5px gray"}} className="mt-20 p-4 shadow-xl rounded-xl">
       <p className="text-2xl font-bold font-serif text-slate-600">
         Available Projects
       </p>

@@ -8,29 +8,31 @@ import { MdOutlineMail } from "react-icons/md";
 import { MdOutlinePassword } from "react-icons/md";
 
 const MentorRegister = () => {
-  const [registerEmail, setRegisterEmail] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
+  const [name, setName] = useState("");
+  const [email, setRegisterEmail] = useState("");
+  const [password, setRegisterPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [company, setCompany] = useState("");
-  const [desgination, setDesignation] = useState("");
+  const [designation, setDesignation] = useState("");
   const [linked, setLinked] = useState("");
-  const [role, setRole] = useState("mentor");
   const navigate = useNavigate();
 
   const register = async () => {
-    if (desgination || company || linked === ""){
-      toast.error("Fill in all required fields!")
-      return
+    if (!designation || !company || !linked || !name || !email) {
+      toast.error("Fill in all required fields!");
+      return;
     }
 
-    if (confirmPassword !== registerPassword) {
+    if (confirmPassword !== password) {
       toast.error("Password Confirmation Mismatch!");
       return;
     }
-    if (registerPassword.length < 6) {
+    if (password.length < 6) {
       toast.error("Password should atleast have 6 characters!");
       return;
     }
+
+    // console.log(name,email,password,confirmPassword,company,designation,linked);
    
     toast.success("Registered successfully!");
     setTimeout(() => {
@@ -50,8 +52,18 @@ const MentorRegister = () => {
           <div className="relative w-full">
             <input
               className="shadow-inner shadow-red-700 rounded-xl h-12 w-full px-8 border-none outline-none "
+              type="text"
+              value={name}
+              placeholder="Enter Name"
+              onChange={(e) => setName(e.target.value)}
+            />
+            <MdOutlineMail className="absolute top-4 left-2 text-gray-500 font-bold" />
+          </div>
+          <div className="relative w-full">
+            <input
+              className="shadow-inner shadow-red-700 rounded-xl h-12 w-full px-8 border-none outline-none "
               type="email"
-              value={registerEmail}
+              value={email}
               placeholder="Enter email"
               onChange={(e) => setRegisterEmail(e.target.value)}
             />
@@ -62,8 +74,8 @@ const MentorRegister = () => {
               required
               className="shadow-inner shadow-red-700 rounded-xl h-12 w-full px-8 border-none outline-none"
               type="text"
-              placeholder="Desgination"
-              value={desgination}
+              placeholder="Designation"
+              value={designation}
               onChange={(e) => setDesignation(e.target.value)}
             />
             <MdOutlinePassword className="absolute top-4 left-2 text-gray-500 font-bold" />
@@ -95,7 +107,7 @@ const MentorRegister = () => {
               required
               className="shadow-inner shadow-red-700 rounded-xl h-12 w-full px-8 border-none outline-none"
               type="password"
-              value={registerPassword}
+              value={password}
               placeholder="Password"
               onChange={(e) => setRegisterPassword(e.target.value)}
             />

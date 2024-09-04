@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
-import { useThemeContext } from "../context/ThemeContext";
+import {useThemeContext} from "../context/ThemeContext";
 import { Moon } from "lucide-react";
 import { Sun } from "lucide-react";
 
