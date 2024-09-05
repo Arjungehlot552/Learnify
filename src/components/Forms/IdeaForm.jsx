@@ -8,19 +8,19 @@ const IdeaForm = () => {
     title: "",
     description: "",
     requirements: "",
-    name: "",
+    user: "",
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { title, description, requirements, name } =
+    const { title, description, requirements, user } =
       formData;
 
     if (
       !title ||
       !description ||
       !requirements ||
-      !name
+      !user
     ) {
       toast.error("Please fill in all required fields.");
       return;
@@ -98,7 +98,7 @@ const IdeaForm = () => {
             type="text"
             placeholder="Enter your username"
             id="text"
-            value={formData.name}
+            value={formData.user}
             onChange={handleChange}
             required
           />
