@@ -9,7 +9,7 @@ const ProjectDisplay = () => {
     // map the projects here
   return (
     <div className="pl-28 pr-28">
-      <div className="h-fit w-full p-8 shadow-xl rounded-xl flex justify-between flex-wrap gap-10">
+      <div className="h-fit w-full pt-16 shadow-xl rounded-xl flex justify-start flex-wrap gap-10">
       {projects.map((index) => (
       <ProjectElement key={index} />
     ))}

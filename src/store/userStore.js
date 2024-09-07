@@ -6,7 +6,7 @@ const useUserStore = create((set) =>({
     setUser:(user) => set({user}),
     fetchUser: async()=>{
         try {
-            const res = await axios.post("http://localhost:4000/api/student/getStudentUser");
+            const res = await axios.post("http://localhost:4000/api/student/getStudentUser",{},{withCredentials:true});
             console.log(res);
             set({user:res.data.data})
         } catch (error) {
