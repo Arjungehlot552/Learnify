@@ -4,22 +4,33 @@ import logo from "../assets/logo.png"
 import { ToastContainer, toast } from "react-toastify";
 import { MdOutlineMail, MdOutlinePassword } from "react-icons/md";
 import RegisterChoice from "./RegisterChoice"; 
+import axios from "axios"
 
 const Login = () => {
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPass, setLoginPass] = useState("");
+  const [email, setLoginEmail] = useState("");
+  const [password, setLoginPass] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
-  const login = () => {
-    if (loginPass.length < 6) {
+  const login = async() => {
+    if (password.length < 6) {
       toast.error("Password should at least have 6 characters!");
       return;
     }
-    toast.success("Login Successful!");
-    setTimeout(() => {
-      navigate("/");
-    }, 2000);
+     
+    if (email === ""){
+      toast.error("Email can't be empty!")
+    }
+
+   const res = await axios.post("http://localhost:4000/api/student/login-student",{email,password})
+
+   console.log(res);
+
+   toast.success("Login Successful!");
+   setTimeout(() => {
+     navigate("/");
+   }, 2000);
+    
   };
 
   const openModal = () => setIsModalOpen(true); 

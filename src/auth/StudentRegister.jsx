@@ -6,29 +6,36 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { MdOutlineMail } from "react-icons/md";
 import { MdOutlinePassword } from "react-icons/md";
+import axios from 'axios'
 
 const StudentRegister = () => {
-  const[name,setName] = useState("")
-  const [registerEmail, setRegisterEmail] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
+  const [name,setName] = useState("")
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [role, setRole] = useState("student");
   const navigate = useNavigate();
 
   const register = async () => {
-    if (confirmPassword !== registerPassword) {
+    if (confirmPassword !== password) {
       toast.error("Password Confirmation Mismatch!");
       return;
     }
-    if (registerPassword.length < 6) {
-      toast.error("Password should atleast have 6 characters!");
+    if (password.length < 6) {
+      toast.error("Password should atleast have 6 characters!"); 
       return;
-    }
+    }    
+   
+    const res = await axios.post("http://localhost:4000/api/student/register-student",{name,email,password})
+   
+    console.log(res);
+    alert("registered")
 
     toast.success("Registered successfully!");
     setTimeout(() => {
       navigate("/");
     }, 2000);
+     
+
   };
 
   return (
@@ -45,7 +52,7 @@ const StudentRegister = () => {
           <div className="relative w-full">
             <input
               className="shadow-inner shadow-red-700 rounded-xl h-12 w-full px-8 border-none outline-none "
-              type="email"
+              type="text"
               value={name}
               placeholder="Enter Name"
               onChange={(e) => setName(e.target.value)}
@@ -56,9 +63,10 @@ const StudentRegister = () => {
             <input
               className="shadow-inner shadow-red-700 rounded-xl h-12 w-full px-8 border-none outline-none "
               type="email"
-              value={registerEmail}
+              value={email}
+              unique
               placeholder="Enter email"
-              onChange={(e) => setRegisterEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <MdOutlineMail className="absolute top-4 left-2 text-gray-500 font-bold" />
           </div>
@@ -67,9 +75,9 @@ const StudentRegister = () => {
               required
               className="shadow-inner shadow-red-700 rounded-xl h-12 w-full px-8 border-none outline-none"
               type="password"
-              value={registerPassword}
+              value={password}
               placeholder="Password"
-              onChange={(e) => setRegisterPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <MdOutlinePassword className="absolute top-4 left-2 text-gray-500 font-bold" />
           </div>
