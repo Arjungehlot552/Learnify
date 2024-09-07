@@ -10,11 +10,11 @@ import useUserStore from "../store/userStore.js";
 import axios from "axios";
 
 const Home = () => {
-  // const { user, setUser, fetchUser } = useUserStore((state) => ({
-  //   user: state.user,
-  //   setUser: state.setUser,
-  //   fetchUser: state.fetchUser,
-  // }));
+  //  const { user, setUser, fetchUser } = useUserStore((state) => ({
+  //    user: state.user,
+  //    setUser: state.setUser,
+  //    fetchUser: state.fetchUser,
+  //  }));
 
   // useEffect(() => {
   //   const getUserData = async () => {
@@ -26,32 +26,27 @@ const Home = () => {
   //   };
   //   getUserData();
   // }, [fetchUser]);
-   
-  const [user,setUser] = useState(null)
+ 
+
+   const [user,setUser] = useState(null)
     
-  useEffect(() => {
-    const fetchUserData = async () => {
-     
-      try {
-        console.log("hi");
-        const res = await axios.get("http://localhost:4000/api/student/getStudentUser", {
-          withCredentials: true, 
-        });
-        console.log(res);
-        setUser(res.data.data); 
-      } catch (error) {
-        console.error("Failed to fetch user:", error);
-        setUser(null); 
-      }
-    };
+   useEffect(() => {
+     const fetchUserData = async () => {
+ 
+       try {
+         const res = await axios.post("http://localhost:4000/api/student/getStudentUser", {
+           withCredentials: true, 
+         });
+         console.log(res);
+         setUser(res.data.data); 
+       } catch (error) {
+         console.error("Failed to fetch user:", error);
+         setUser(null); 
+       }
+     }
+     fetchUserData();
+   }, [])
 
-    fetchUserData();
-  }, []);
-
-  
-  // const res = axios.post("http://localhost:4000/api/student/getStudentUser")
-  // console.log(res.data.data);
-  // setUser(res.data.data)
 
 
   return (

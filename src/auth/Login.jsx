@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../assets/logo.png"
+import logo from "../assets/logo.png";
 import { ToastContainer, toast } from "react-toastify";
 import { MdOutlineMail, MdOutlinePassword } from "react-icons/md";
-import RegisterChoice from "./RegisterChoice"; 
-import axios from "axios"
+import RegisterChoice from "./RegisterChoice";
+import axios from "axios";
 
 const Login = () => {
   const [email, setLoginEmail] = useState("");
@@ -12,29 +12,36 @@ const Login = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
-  const login = async() => {
+  const login = async () => {
     if (password.length < 6) {
       toast.error("Password should at least have 6 characters!");
       return;
     }
-     
-    if (email === ""){
-      toast.error("Email can't be empty!")
+
+    if (email === "") {
+      toast.error("Email can't be empty!");
     }
 
-   const res = await axios.post("http://localhost:4000/api/student/login-student",{email,password})
+    try {
+      const res = await axios.post(
+        "http://localhost:4000/api/student/login-student",
+        { email, password },
+        { withCredentials: true }
+      );
+      console.log(res.data);
+    }
+     catch (error) {
+      console.log(error, "from login page");
+    }
 
-   console.log(res);
-
-   toast.success("Login Successful!");
-   setTimeout(() => {
-     navigate("/");
-   }, 2000);
-    
+    toast.success("Login Successful!");
+    setTimeout(() => {
+      navigate("/");
+    }, 2000);
   };
 
-  const openModal = () => setIsModalOpen(true); 
-  const closeModal = () => setIsModalOpen(false); 
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   return (
     <div className="h-fit flex items-center justify-center pt-24">
@@ -86,7 +93,9 @@ const Login = () => {
 
       <ToastContainer />
 
-      {isModalOpen && <RegisterChoice isOpen={isModalOpen} onClose={closeModal} />}
+      {isModalOpen && (
+        <RegisterChoice isOpen={isModalOpen} onClose={closeModal} />
+      )}
     </div>
   );
 };
