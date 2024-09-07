@@ -64,7 +64,6 @@ const StudentRegister = () => {
               className="shadow-inner shadow-red-700 rounded-xl h-12 w-full px-8 border-none outline-none "
               type="email"
               value={email}
-              unique
               placeholder="Enter email"
               onChange={(e) => setEmail(e.target.value)}
             />
