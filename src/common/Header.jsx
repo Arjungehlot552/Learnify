@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
 import logo from "../assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useThemeContext } from "../context/ThemeContext";
 import { Moon, Sun } from "lucide-react";
 import useUserStore from "../store/userStore.js";
 import { FaUserLarge } from "react-icons/fa6";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 const Header = () => {
+  const navigate = useNavigate();
   const { user, fetchUser } = useUserStore((state) => ({
     user: state.user,
     fetchUser: state.fetchUser,
@@ -25,21 +28,49 @@ const Header = () => {
 
   const { colorMode, toggleColorMode } = useThemeContext();
 
+  const handleLogout = async () => {
+    try {
+      // console.log("hello from frontend");
+      const res = await axios.post(
+        "http://localhost:4000/api/student/logout",
+        {},
+        { withCredentials: true }
+      );
+      console.log(res);
+      toast.success("Logged out successfully!");
+      setTimeout(() => {
+        window.location.reload();
+        navigate("/");
+      }, 2000);
+    } catch (error) {
+      toast.error("Error logging out!");
+      console.log("Error while logging out!....", error);
+    }
+  };
+
   return (
-    <div className="outline outline-blue-100 outline-2 h-20 w-full pr-32 pl-32 text-black flex items-center justify-between">
+    <div className="outline outline-blue-100 outline-2 h-20 w-full pl-44 flex items-center justify-between">
       <div>
         <Link to={"/"}>
           <img className="h-12" src={logo} alt="Logo" />
         </Link>
       </div>
-      <div className="flex gap-16">
+      <div className="pl-[800px]">
         {user ? (
           <div className="flex items-center justify-center gap-10">
             <div className="flex items-center justify-center gap-10">
-              <button className="h-10 w-32 font-bold tracking-wider text-slate-600 outline outline-slate-500 outline-2 text-lg rounded-xl flex items-center justify-center gap-2 hover:bg-blue-700 hover:text-white duration-700">
+              <button
+                onClick={handleLogout}
+                className="h-10 w-32 font-bold tracking-wider text-slate-600 outline outline-slate-500 outline-2 text-lg rounded-xl flex items-center justify-center gap-2 hover:bg-blue-700 hover:text-white duration-700"
+              >
                 Logout
               </button>
-              <FaUserLarge size={28} className={`${colorMode == "dark" ? "text-white" : "text-black" }`} />
+              <FaUserLarge
+                size={28}
+                className={`${
+                  colorMode == "dark" ? "text-white" : "text-black"
+                }`}
+              />
             </div>
             <div
               onClick={toggleColorMode}
@@ -53,14 +84,12 @@ const Header = () => {
             </div>
           </div>
         ) : (
-          <div className="flex gap-16">
-            <div>
-              <Link to={"/login"}>
-                <button className="h-10 w-32 font-bold tracking-wider text-slate-600 outline outline-slate-500 outline-2 text-lg rounded-xl flex items-center justify-center gap-2 hover:bg-blue-700 hover:text-white duration-700">
-                  Login
-                </button>
-              </Link>
-            </div>
+          <div className="flex gap-16 ">
+            <Link to={"/login"}>
+              <button className="h-10 w-32 font-bold tracking-wider text-slate-600 outline outline-slate-500 outline-2 text-lg rounded-xl flex items-center justify-center gap-2 hover:bg-blue-700 hover:text-white duration-700">
+                Login
+              </button>
+            </Link>
             <div
               onClick={toggleColorMode}
               className="cursor-pointer flex items-center"
@@ -74,6 +103,8 @@ const Header = () => {
           </div>
         )}
       </div>
+
+      <ToastContainer />
     </div>
   );
 };

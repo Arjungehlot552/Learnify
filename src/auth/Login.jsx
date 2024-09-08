@@ -29,15 +29,17 @@ const Login = () => {
         { withCredentials: true }
       );
       console.log(res.data);
+      toast.success("Login Successful!");
+      setTimeout(() => {
+        navigate("/");
+        window.location.reload()
+      }, 2000);
     }
      catch (error) {
       console.log(error, "from login page");
     }
 
-    toast.success("Login Successful!");
-    setTimeout(() => {
-      navigate("/");
-    }, 2000);
+   
   };
 
   const openModal = () => setIsModalOpen(true);
