@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { ToastContainer, toast } from "react-toastify";
 import { MdOutlineMail, MdOutlinePassword } from "react-icons/md";

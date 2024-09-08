@@ -13,11 +13,15 @@ const ProjectForm = () => {
     ytLink: "",
     gitLink: "",
     college: "",
-    images: null,
+    image: null,
   });
 
   const handleChange = (e) => {
-    setFormData(e.target.value);
+    const { id, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [id]: value,
+    }));
   };
 
   const handleSubmit = (e) => {
@@ -144,7 +148,7 @@ const ProjectForm = () => {
               </div>
               <div className="flex justify-center">
                 <div className="mt-4 p-4 w-full rounded-xl outline outline-1 outline-gray-400 flex flex-col gap-4">
-                  <label htmlFor="images">
+                  <label htmlFor="image">
                     <p className="text-xl font-semibold">
                       Upload project related images [Image should be less than
                       500KB]
@@ -153,7 +157,7 @@ const ProjectForm = () => {
                   <input
                     className="border p-3 rounded-lg placeholder-black placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
                     type="file"
-                    id="images"
+                    id="image"
                     required
                     onChange={(event) => setImg1(event.target.files[0])}
                   />
