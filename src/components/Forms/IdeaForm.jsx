@@ -1,32 +1,56 @@
 import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import ScrollToTop from "../Other/ScrollToTop"
+import ScrollToTop from "../Other/ScrollToTop";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import useUserStore from "../../store/userStore"
 
 const IdeaForm = () => {
-  ScrollToTop()
+  ScrollToTop();
+
+  const {user} = useUserStore((state)=>(
+    {
+       user:state.user
+    }
+  ))
+
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: "",
     description: "",
     requirements: "",
-    user: "",
+    email: "",
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const { title, description, requirements, user } =
-      formData;
+  const handleSubmit = async (e) => {
+    const { title, description, requirements, email } = formData;
 
-    if (
-      !title ||
-      !description ||
-      !requirements ||
-      !user
-    ) {
+    if (!title || !description || !requirements || !email) {
       toast.error("Please fill in all required fields.");
       return;
     }
 
-    // Handle form submission here (e.g., sending data to a server)
+    if (user.email !== email){
+      toast.error("Please enter the current logged in email!")
+      return ;
+    }
+
+    try {
+      const res = await axios.post(
+        "http://localhost:4000/api/ideas/create-idea",
+        formData,
+        { withCredentials: true}
+      );
+
+      console.log(res);
+      toast.success("Idea posted!");
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
+    } catch (error) {
+      toast.error("Can't post idea!");
+      console.log("Error while posting idea!");
+    }
   };
 
   const handleChange = (e) => {
@@ -38,10 +62,7 @@ const IdeaForm = () => {
 
   return (
     <div className="pl-40 pr-40 w-full flex justify-center items-center pt-20 ">
-      <form
-        onSubmit={handleSubmit}
-        className="w-[40%] flex flex-col justify-center items-center shadow-lg shadow-gray-500 p-10 gap-4 rounded-xl"
-      >
+      <div className="w-[40%] flex flex-col justify-center items-center shadow-lg shadow-gray-500 p-10 gap-4 rounded-xl">
         <p className="w-full p-2 text-center rounded-xl outline outline-slate-300 text-lg font-semibold text-white bg-blue-700 ">
           Provide project details
         </p>
@@ -54,7 +75,6 @@ const IdeaForm = () => {
             value={formData.title}
             onChange={handleChange}
             required
-            
           />
           <input
             className="outline-1 outline outline-gray-400 shadow-inner rounded-xl w-full p-3"
@@ -66,24 +86,6 @@ const IdeaForm = () => {
             required
             maxLength={75}
           />
-          {/* <input
-            className="outline-1 outline outline-gray-400 shadow-inner rounded-xl w-full p-3"
-            type="date"
-            placeholder="Expected start date"
-            id="date"
-            value={formData.date}
-            onChange={handleChange}
-            required
-          />
-          <input
-            className="outline-1 outline outline-gray-400 shadow-inner rounded-xl w-full p-3"
-            type="text"
-            placeholder="Expected duration"
-            id="duration"
-            value={formData.duration}
-            onChange={handleChange}
-            required
-          /> */}
           <input
             className="outline-1 outline outline-gray-400 shadow-inner rounded-xl w-full p-3"
             type="text"
@@ -96,9 +98,9 @@ const IdeaForm = () => {
           <input
             className="outline-1 outline outline-gray-400 shadow-inner rounded-xl w-full p-3"
             type="text"
-            placeholder="Enter your username"
-            id="text"
-            value={formData.user}
+            placeholder="Enter your email"
+            id="email"
+            value={formData.email}
             onChange={handleChange}
             required
           />
@@ -106,11 +108,11 @@ const IdeaForm = () => {
 
         <button
           onClick={handleSubmit}
-         className="flex outline text-xl w-full justify-center items-center mt-6 h-12 rounded-xl font-semibold gap-4 hover:outline-blue-600 hover:bg-white text-white bg-blue-700 transition-all duration-500 hover:text-black"
+          className="flex outline text-xl w-full justify-center items-center mt-6 h-12 rounded-xl font-semibold gap-4 hover:outline-blue-600 hover:bg-white text-white bg-blue-700 transition-all duration-500 hover:text-black"
         >
           Post
         </button>
-      </form>
+      </div>
       <ToastContainer />
     </div>
   );

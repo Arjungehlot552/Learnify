@@ -9,7 +9,7 @@ import axios from "axios";
 const Login = () => {
   const [email, setLoginEmail] = useState("");
   const [password, setLoginPass] = useState("");
-  const [role, setRole] = useState("student"); // Default role
+  const [role, setRole] = useState("student"); 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 

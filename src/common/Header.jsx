@@ -6,6 +6,7 @@ import { Moon, Sun } from "lucide-react";
 import useUserStore from "../store/userStore.js";
 import useMentorStore from "../store/mentorStore.js";
 import { FaUserLarge } from "react-icons/fa6";
+import { FaUserGraduate } from "react-icons/fa";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -23,7 +24,8 @@ const Header = () => {
 
   useEffect(() => {
     const getUserData = async () => {
-      if (!user && !mentor) {  // Fetch user only if neither user nor mentor is available
+      if (!user && !mentor) {
+        // Fetch user only if neither user nor mentor is available
         try {
           await fetchUser();
         } catch (error) {
@@ -36,7 +38,8 @@ const Header = () => {
 
   useEffect(() => {
     const getMentorData = async () => {
-      if (!mentor && !user) {  // Fetch mentor only if neither mentor nor user is available
+      if (!mentor && !user) {
+        // Fetch mentor only if neither mentor nor user is available
         try {
           await fetchMentor();
         } catch (error) {
@@ -59,8 +62,9 @@ const Header = () => {
       console.log(res);
       toast.success("User logged out successfully!");
       setTimeout(() => {
-        window.location.reload();
         navigate("/");
+        window.location.reload();
+       
       }, 2000);
     } catch (error) {
       toast.error("Error logging out user!");
@@ -112,12 +116,31 @@ const Header = () => {
               >
                 Logout
               </button>
-              <FaUserLarge
-                size={28}
-                className={`${
-                  colorMode == "dark" ? "text-white" : "text-black"
-                }`}
-              />
+              {user ? (
+                <div className="relative group">
+                  <FaUserLarge
+                    size={28}
+                    className={`${
+                      colorMode == "dark" ? "text-white" : "text-black"
+                    } cursor-pointer`}
+                  />
+                  <div className="absolute left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block top-8 bg-gray-400 text-black font-semibold text-xs rounded py-2 px-3">
+                    User
+                  </div>
+                </div>
+              ) : (
+                <div className="relative group">
+                  <FaUserGraduate
+                    size={28}
+                    className={`${
+                      colorMode === "dark" ? "text-white" : "text-black"
+                    } cursor-pointer`}
+                  />
+                  <div className="absolute left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block top-8 bg-gray-400 text-black font-semibold text-xs rounded py-2 px-2">
+                    Mentor
+                  </div>
+                </div>
+              )}
             </div>
             <div
               onClick={toggleColorMode}

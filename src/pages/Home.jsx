@@ -6,9 +6,14 @@ import MentorHome from "../components/Home/MentorHome";
 import FilterHome from "../components/Home/FilterHome";
 import IdeaHome from "../components/Home/IdeaHome";
 import IdeaDisplay from "../components/Home/IdeaDisplay.jsx";
+import useMentorStore from "../store/mentorStore.js";
 
 
 const Home = () => {
+
+  const {mentor} = useMentorStore((state)=>({
+    mentor : state.mentor
+  }));
    
   return (
     <>
@@ -41,7 +46,7 @@ const Home = () => {
             <IdeaDisplay />
             <MentorHome />
             <FilterHome />
-            <IdeaHome />
+            {mentor?null:<IdeaHome />}
           </div>
         </div>
       

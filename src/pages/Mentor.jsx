@@ -1,30 +1,44 @@
-import React from 'react'
-import MentorCard from '../components/Cards/MentorCard'
-import ScrollToTop from "../components/Other/ScrollToTop"
+import React, { useEffect, useState } from "react";
+import MentorCard from "../components/Cards/MentorCard";
+import ScrollToTop from "../components/Other/ScrollToTop";
+import axios from "axios";
 
 const Mentor = () => {
-  ScrollToTop()
+  ScrollToTop();
+  
+  // State to hold mentors data
+  const [mentors, setMentors] = useState([]);
+
+  // Fetch mentors inside useEffect
+  useEffect(() => {
+    const fetchMentors = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:4000/api/mentor/getMentors"
+        );
+        console.log(res.data.data);
+        setMentors(res.data.data); // Update the state with the fetched data
+      } catch (error) {
+        console.log("Error fetching mentors", error);
+      }
+    };
+
+    fetchMentors();
+  }, []); // Empty dependency array to ensure this runs only once when the component mounts
+
   return (
-    <div className="pl-28 pr-28">
-      <div className="h-fit w-full p-8 shadow-xl rounded-xl flex justify-between flex-wrap gap-8">
-        <MentorCard />
-        <MentorCard />
-        <MentorCard />
-        <MentorCard />
-        <MentorCard />
-        <MentorCard />
-        <MentorCard />
-        <MentorCard />
-        <MentorCard />
-        <MentorCard />
-        <MentorCard />
-        <MentorCard />
-        <MentorCard />
-        <MentorCard />
-        <MentorCard />
+    <div className="pl-28 pr-28 flex items-center justify-center">
+      <div className="h-fit w-[1300px] p-8 px-10 shadow-xl rounded-xl flex justify-start items-center flex-wrap gap-8">
+        {mentors.length > 0 ? (
+          mentors.map((mentor, index) => (
+            <MentorCard key={index} props={mentor} />
+          ))
+        ) : (
+          <p>No mentors available</p>
+        )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Mentor
+export default Mentor;
