@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useThemeContext } from "../context/ThemeContext";
 import { Moon, Sun } from "lucide-react";
 import useUserStore from "../store/userStore.js";
+import useMentorStore from "../store/mentorStore.js";
 import { FaUserLarge } from "react-icons/fa6";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
@@ -15,36 +16,82 @@ const Header = () => {
     fetchUser: state.fetchUser,
   }));
 
+  const { mentor, fetchMentor } = useMentorStore((state) => ({
+    mentor: state.mentor,
+    fetchMentor: state.fetchMentor,
+  }));
+
   useEffect(() => {
     const getUserData = async () => {
-      try {
-        await fetchUser();
-      } catch (error) {
-        console.error("Failed to fetch user:", error);
+      if (!user && !mentor) {  // Fetch user only if neither user nor mentor is available
+        try {
+          await fetchUser();
+        } catch (error) {
+          console.error("Failed to fetch user:", error);
+        }
       }
     };
     getUserData();
-  }, [fetchUser]);
+  }, [user, mentor, fetchUser]);
+
+  useEffect(() => {
+    const getMentorData = async () => {
+      if (!mentor && !user) {  // Fetch mentor only if neither mentor nor user is available
+        try {
+          await fetchMentor();
+        } catch (error) {
+          console.error("Failed to fetch mentor:", error);
+        }
+      }
+    };
+    getMentorData();
+  }, [mentor, user, fetchMentor]);
 
   const { colorMode, toggleColorMode } = useThemeContext();
 
-  const handleLogout = async () => {
+  const handleUserLogout = async () => {
     try {
-      // console.log("hello from frontend");
       const res = await axios.post(
         "http://localhost:4000/api/student/logout",
         {},
         { withCredentials: true }
       );
       console.log(res);
-      toast.success("Logged out successfully!");
+      toast.success("User logged out successfully!");
       setTimeout(() => {
         window.location.reload();
         navigate("/");
       }, 2000);
     } catch (error) {
-      toast.error("Error logging out!");
-      console.log("Error while logging out!....", error);
+      toast.error("Error logging out user!");
+      console.log("Error while logging out user:", error);
+    }
+  };
+
+  const handleMentorLogout = async () => {
+    try {
+      const res = await axios.post(
+        "http://localhost:4000/api/mentor/logout",
+        {},
+        { withCredentials: true }
+      );
+      console.log(res);
+      toast.success("Mentor logged out successfully!");
+      setTimeout(() => {
+        window.location.reload();
+        navigate("/");
+      }, 2000);
+    } catch (error) {
+      toast.error("Error logging out mentor!");
+      console.log("Error while logging out mentor:", error);
+    }
+  };
+
+  const handleLogout = () => {
+    if (user) {
+      handleUserLogout();
+    } else if (mentor) {
+      handleMentorLogout();
     }
   };
 
@@ -56,7 +103,7 @@ const Header = () => {
         </Link>
       </div>
       <div className="pl-[800px]">
-        {user ? (
+        {user || mentor ? (
           <div className="flex items-center justify-center gap-10">
             <div className="flex items-center justify-center gap-10">
               <button

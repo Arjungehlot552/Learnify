@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-// import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { MdOutlineMail } from "react-icons/md";
-import { MdOutlinePassword } from "react-icons/md";
+import { MdOutlineMail, MdOutlinePassword, MdOutlineBusiness, MdOutlinePerson, MdOutlineLink } from "react-icons/md";
+import axios from "axios";
 
 const MentorRegister = () => {
   const [name, setName] = useState("");
@@ -28,16 +27,25 @@ const MentorRegister = () => {
       return;
     }
     if (password.length < 6) {
-      toast.error("Password should atleast have 6 characters!");
+      toast.error("Password should at least have 6 characters!");
       return;
     }
 
-    // console.log(name,email,password,confirmPassword,company,designation,linked);
-   
-    toast.success("Registered successfully!");
-    setTimeout(() => {
-      navigate("/");
-    }, 2000);
+    try {
+      const res = await axios.post(
+        "http://localhost:4000/api/mentor/register-mentor",
+        { name, email, designation, company, linked, password },
+        { withCredentials: true }
+      );
+      console.log(res);
+      toast.success("Registered Successfully!");
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+    } catch (error) {
+      console.log("Error while registering mentor", error);
+      toast.error("Registration failed. Please try again.");
+    }
   };
 
   return (
@@ -46,8 +54,8 @@ const MentorRegister = () => {
         style={{ boxShadow: "0px 0px 10px 0px gray" }}
         className="h-fit py-5 w-[500px] rounded-xl shadow-black flex items-center justify-center gap-6 flex-col"
       >
-        <p className="text-2xl text-black font-semibold ">Register as Mentor</p>
-        <img src={logo} className="h-20 w-[300px] object-contain" alt="" />
+        <p className="text-2xl text-red-500 font-semibold ">Register as Mentor</p>
+        <img src={logo} className="h-20 w-[300px] object-contain" alt="Logo" />
         <div className="flex w-full px-10 flex-col items-center justify-center gap-5 mt-4">
           <div className="relative w-full">
             <input
@@ -57,14 +65,14 @@ const MentorRegister = () => {
               placeholder="Enter Name"
               onChange={(e) => setName(e.target.value)}
             />
-            <MdOutlineMail className="absolute top-4 left-2 text-gray-500 font-bold" />
+            <MdOutlinePerson className="absolute top-4 left-2 text-gray-500 font-bold" />
           </div>
           <div className="relative w-full">
             <input
               className="shadow-inner shadow-red-700 rounded-xl h-12 w-full px-8 border-none outline-none "
               type="email"
               value={email}
-              placeholder="Enter email"
+              placeholder="Enter Email"
               onChange={(e) => setRegisterEmail(e.target.value)}
             />
             <MdOutlineMail className="absolute top-4 left-2 text-gray-500 font-bold" />
@@ -78,7 +86,7 @@ const MentorRegister = () => {
               value={designation}
               onChange={(e) => setDesignation(e.target.value)}
             />
-            <MdOutlinePassword className="absolute top-4 left-2 text-gray-500 font-bold" />
+            <MdOutlineBusiness className="absolute top-4 left-2 text-gray-500 font-bold" />
           </div>
           <div className="relative w-full">
             <input
@@ -89,7 +97,7 @@ const MentorRegister = () => {
               value={company}
               onChange={(e) => setCompany(e.target.value)}
             />
-            <MdOutlinePassword className="absolute top-4 left-2 text-gray-500 font-bold" />
+            <MdOutlineBusiness className="absolute top-4 left-2 text-gray-500 font-bold" />
           </div>
           <div className="relative w-full">
             <input
@@ -100,7 +108,7 @@ const MentorRegister = () => {
               value={linked}
               onChange={(e) => setLinked(e.target.value)}
             />
-            <MdOutlinePassword className="absolute top-4 left-2 text-gray-500 font-bold" />
+            <MdOutlineLink className="absolute top-4 left-2 text-gray-500 font-bold" />
           </div>
           <div className="relative w-full">
             <input
@@ -133,7 +141,7 @@ const MentorRegister = () => {
           </button>
         </div>
         <p className="tracking-wide">
-          Already have an account?{"  "}
+          Already have an account?{" "}
           <Link
             to="/login"
             className="font-semibold underline hover:scale-95 hover:text-blue-800"

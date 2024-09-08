@@ -44,7 +44,7 @@ const StudentRegister = () => {
         style={{ boxShadow: "0px 0px 10px 0px gray" }}
         className="h-fit py-5 w-[500px] rounded-xl shadow-black flex items-center justify-center gap-6 flex-col"
       >
-        <p className="text-2xl text-black font-semibold ">
+        <p className="text-2xl text-red-500 font-semibold ">
           Register as Student
         </p>
         <img src={logo} className="h-20 w-[300px] object-contain" alt="" />

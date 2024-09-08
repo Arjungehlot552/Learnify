@@ -9,6 +9,7 @@ import axios from "axios";
 const Login = () => {
   const [email, setLoginEmail] = useState("");
   const [password, setLoginPass] = useState("");
+  const [role, setRole] = useState("student"); // Default role
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -20,11 +21,12 @@ const Login = () => {
 
     if (email === "") {
       toast.error("Email can't be empty!");
+      return;
     }
 
     try {
       const res = await axios.post(
-        "http://localhost:4000/api/student/login-student",
+        `http://localhost:4000/api/${role}/login`,
         { email, password },
         { withCredentials: true }
       );
@@ -32,28 +34,43 @@ const Login = () => {
       toast.success("Login Successful!");
       setTimeout(() => {
         navigate("/");
-        window.location.reload()
+        window.location.reload();
       }, 2000);
-    }
-     catch (error) {
+    } catch (error) {
+      toast.error("Error logging in!");
       console.log(error, "from login page");
     }
-
-   
   };
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <div className="h-fit flex items-center justify-center pt-24">
+    <div className="h-fit flex items-center justify-center pt-10">
       <div
         style={{ boxShadow: "0px 0px 10px 0.5px gray" }}
         className="h-fit py-10 w-[500px] rounded-xl shadow-black flex items-center justify-center gap-8 flex-col"
       >
-        <p className="text-4xl text-black font-semibold">Login</p>
+        <p className="text-4xl text-red-500 font-semibold">Login</p>
         <img src={logo} className="h-20 w-[300px] object-contain" alt="Logo" />
+        
         <div className="flex w-full px-10 flex-col items-center justify-center gap-8 mt-4">
+          <div className="mb-4">
+            <label className="mr-4 font-semibold">Login as:</label>
+            <button
+              onClick={() => setRole("student")}
+              className={`px-4 py-2 rounded ${role === "student" ? "bg-blue-500 text-white font-semibold" : "bg-gray-200 font-semibold text-blue-600"}`}
+            >
+              Student
+            </button>
+            <button
+              onClick={() => setRole("mentor")}
+              className={`px-4 py-2 rounded ${role === "mentor" ? "bg-blue-500 text-white font-semibold" : "bg-gray-200 font-semibold text-blue-600"}`}
+            >
+              Mentor
+            </button>
+          </div>
+
           <div className="relative w-full">
             <input
               className="shadow-inner shadow-red-700 rounded-xl h-12 w-full px-8 border-none outline-none"
