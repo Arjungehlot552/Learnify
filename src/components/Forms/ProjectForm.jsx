@@ -1,37 +1,106 @@
 import React, { useState } from "react";
 import ScrollToTop from "../Other/ScrollToTop";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import useUserStore from "../../store/userStore";
+import {useNavigate} from "react-router-dom"
 
 const ProjectForm = () => {
   ScrollToTop();
-  const [img1, setImg1] = useState(null);
+  const navigate = useNavigate();
+
+  const {user} = useUserStore((state)=>(
+    {
+       user:state.user
+    }
+  ))
+
   const [formData, setFormData] = useState({
-    name: "",
-    projectName: "",
+    email: "",
+    title: "",
     domain: "",
     abstract: "",
     description: "",
-    ytLink: "",
-    gitLink: "",
-    college: "",
+    videolink: "",
+    githublink: "",
+    collegename: "",
     image: null,
   });
 
   const handleChange = (e) => {
-    const { id, value } = e.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [id]: value,
-    }));
+    const { id, value, files } = e.target;
+
+    if (id === "image") {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        image: files[0],
+      }));
+    } else {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [id]: value,
+      }));
+    }
+    // console.log(formData);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-  };
+   
+    if (!user){
+      toast.error("Please login first!")
+      setTimeout(()=>{
+        navigate("/login")
+      },2000)
+      return
+    }
 
-  const uploadImage = () => {
-    if (!img1) {
-      alert("Please select an image to upload.");
+    if (!formData.image) {
+      toast.error("Please select an image to upload.");
       return;
+    }
+
+    if (
+      !formData.email ||
+      !formData.title ||
+      !formData.domain ||
+      !formData.abstract ||
+      !formData.description ||
+      !formData.videolink ||
+      !formData.githublink ||
+      !formData.collegename
+    ) {
+      return toast.error("Fill in all required fields!");
+    }
+
+    const data = new FormData();
+    data.append("email", user.email);
+    data.append("title", formData.title);
+    data.append("domain", formData.domain);
+    data.append("abstract", formData.abstract);
+    data.append("description", formData.description);
+    data.append("videolink", formData.videolink);
+    data.append("githublink", formData.githublink);
+    data.append("collegename", formData.collegename);
+    data.append("image", formData.image);
+
+    console.log(data);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:4000/api/project/create-project",
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(response.data);
+      toast.success("Project uploaded successfully!");
+    } catch (error) {
+      console.error("Error uploading project:", error);
+      alert("There was an error uploading the project.");
     }
   };
 
@@ -50,18 +119,18 @@ const ProjectForm = () => {
               <input
                 className="border p-3 rounded-lg placeholder-black placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
                 type="text"
-                id="name"
+                id="email"
                 placeholder="Enter your username"
-                value={formData.name}
+                value={formData.email}
                 onChange={handleChange}
                 required
               />
               <input
                 className="border p-3 rounded-lg placeholder-black placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
                 type="text"
-                id="projectName"
-                placeholder="Project Title"
-                value={formData.projectName}
+                id="title"
+                placeholder="Project title"
+                value={formData.title}
                 onChange={handleChange}
                 required
               />
@@ -107,30 +176,30 @@ const ProjectForm = () => {
 
               <input
                 className={`border p-3 rounded-lg placeholder-black placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full ${
-                  formData.ytLink ? `border-blue-600` : `text-black`
+                  formData.videolink ? `border-blue-600` : `text-black`
                 }`}
                 type="text"
-                id="ytLink"
+                id="videolink"
                 placeholder="Paste YouTube video link here"
-                value={formData.ytLink}
+                value={formData.videolink}
                 onChange={handleChange}
               />
               <input
                 className={`border p-3 rounded-lg placeholder-black placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full ${
-                  formData.gitLink ? `border-blue-600` : `text-black`
+                  formData.githublink ? `border-blue-600` : `text-black`
                 }`}
                 type="text"
-                id="gitLink"
+                id="githublink"
                 placeholder="Paste GitHub link here (if any)"
-                value={formData.gitLink}
+                value={formData.githublink}
                 onChange={handleChange}
               />
               <input
                 type="text"
-                id="college"
+                id="collegename"
                 className="border p-3 rounded-lg placeholder-black placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
-                placeholder="College/University Name (write N/A in case of individual project)"
-                value={formData.college}
+                placeholder="College/University Name"
+                value={formData.collegename}
                 onChange={handleChange}
                 required
               />
@@ -159,7 +228,7 @@ const ProjectForm = () => {
                     type="file"
                     id="image"
                     required
-                    onChange={(event) => setImg1(event.target.files[0])}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -173,6 +242,7 @@ const ProjectForm = () => {
           </div>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 };
