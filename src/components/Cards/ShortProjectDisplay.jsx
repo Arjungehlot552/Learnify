@@ -2,7 +2,7 @@ import React from "react";
 import img1 from "../../assets/artificial.jpg";
 import { Link } from "react-router-dom";
 
-const ShortProjectDisplay = () => {
+const ShortProjectDisplay = ({item}) => {
   const slicer = (text) => {
     return text.slice(0, 55) + "...";
   };
