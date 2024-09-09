@@ -7,7 +7,6 @@ const ShortProjectDisplay = ({item}) => {
   };
   return (
     <>
-      {/*key={pro.id} to={`/projects/${pro.id}`}*/}
       <div
         style={{ boxShadow: "0 0 5px 0.2px blue" }}
         className="h-[400px] relative w-80 rounded-lg flex flex-col items-center justify-start gap-2 p-3"
@@ -32,7 +31,7 @@ const ShortProjectDisplay = ({item}) => {
               item.description
             )}
           </p>
-          <Link className="w-72 left-4 absolute bottom-3 pt-2" to="/projectdetail">
+          <Link to={`/projectdetail/${item._id}`} className="w-72 left-4 absolute bottom-3 pt-2">
             <button className=" text-white outline hover:bg-white hover:text-black text-xl hover:outline-2 hover:outline-blue-600 bg-blue-700 transition-all duration-200  font-semibold w-full rounded-lg p-2">
               Read Project
             </button>

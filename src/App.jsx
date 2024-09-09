@@ -37,7 +37,7 @@ function App() {
           <Route path="/upload-idea" element={<IdeaForm />} />
           <Route path="/ideadisplay" element={<ProjectIdea />} />
           <Route path="/projectdisplay" element={<ProjectDisplay />} />
-          <Route path="/projectdetail" element={<ProjectDetail />} />
+          <Route path="/projectdetail/:id" element={<ProjectDetail />} />
           <Route path="/mentor" element={<Mentor />} />
           <Route path="/userguidelines" element={<UserGuidelines />} />
           <Route path="/about" element={<About />} />

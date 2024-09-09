@@ -1,54 +1,86 @@
-import React from "react";
-import ScrollToTop from "../Other/ScrollToTop"
+import React, { useEffect, useState } from "react";
+import ScrollToTop from "../Other/ScrollToTop";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import { useThemeContext } from "../../context/ThemeContext"; // Import your context
 
 const ProjectDetail = () => {
-           ScrollToTop()
+  ScrollToTop();
+  const { id } = useParams();
+  const [project, setProject] = useState(null);
+  const { colorMode } = useThemeContext();
+
+  useEffect(() => {
+    const fetchProject = async () => {
+      try {
+        const res = await axios.get(`http://localhost:4000/api/project/getProjectById/${id}`);
+        setProject(res.data.data);
+        console.log(res.data.data);
+      } catch (error) {
+        console.log("Error fetching project details:", error);
+        toast.error("Can't fetch project details!");
+      }
+    };
+    if (id) {
+      fetchProject();
+    }
+  }, [id]);
+
+  if (!project) {
+    return <div>Loading project details...</div>; // Loading state
+  }
+
+  const gradientTextStyle = colorMode === 'dark' ? {
+    background: 'linear-gradient(90deg, rgba(255,0,150,1) 0%, rgba(0,204,255,1) 100%)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent'
+  } : {};
+
   return (
-    <div className="h-fit w-full bg-gradient-to-tr from-red-100 to-blue-100 via-white flex items-center justify-center py-20 -mb-20 text-lg">
+    <div
+      className={`h-fit min-h-[800px] w-full bg-gradient-to-tr ${colorMode === 'light' ? 'from-red-100 to-blue-100 via-white' : 'from-gray-800 to-gray-900 via-gray-700'} flex items-center justify-center py-10 -mb-20 text-lg`}
+    >
       <div
         style={{ boxShadow: "0 0 5px 0.5px gray" }}
-        className="w-[60%] bg-white flex p-8 rounded-2xl flex-col items-start justify-center gap-5"
+        className={`w-[60%] ${colorMode === 'dark' ? 'bg-gray-900 text-gray-200' : 'bg-white text-gray-800'} flex p-8 rounded-2xl flex-col items-start justify-center gap-5`}
       >
+        <img src={project[0].image} alt="" />
         <p>
-          <strong>User ID:</strong> dummyuser@example.com
+          <strong style={gradientTextStyle}>Name:</strong> {project[1].name}
         </p>
         <p>
-          <strong>Project Name:</strong> Smart Agriculture Monitoring System
+          <strong style={gradientTextStyle}>Email:</strong> {project[1].email}
         </p>
         <p>
-          <strong>Domain:</strong> AI (Artificial Intelligence)
+          <strong style={gradientTextStyle}>Project Name:</strong> {project[0].title}
         </p>
         <p>
-          <strong>Abstract:</strong> This project aims to develop a smart
-          agriculture monitoring system using IoT and AI to help farmers
-          efficiently manage their crops and resources.
+          <strong style={gradientTextStyle}>Domain:</strong> {project[0].domain}
         </p>
         <p>
-          <strong>Description:</strong>- The Smart Agriculture Monitoring System
-          is designed to collect data from various sensors placed in the field,
-          such as soil moisture, temperature, and humidity sensors. - This data
-          is then processed using AI algorithms to provide real-time
-          recommendations to farmers. - The system can predict weather
-          conditions, detect pests, and suggest the best time for irrigation and
-          fertilization. - The project includes a mobile app where farmers can
-          monitor their fields remotely and receive alerts and suggestions. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat ipsum harum illo officiis voluptates incidunt beatae impedit necessitatibus officia quasi. Accusantium ad impedit commodi! Odio dolorem veniam eos consequuntur nobis praesentium! Tempore optio explicabo voluptatum, unde ab quod voluptatem saepe a rerum laboriosam! Assumenda eos repellat odio alias nam quasi esse voluptates repellendus ipsam laboriosam aut in hic enim inventore accusamus, optio ad consectetur voluptatibus distinctio deserunt ducimus soluta ipsa eveniet id? Ad, mollitia voluptate at numquam dolorum libero ratione tenetur porro, iste accusantium ducimus omnis quis neque animi similique soluta! Quaerat eaque aliquid soluta. Ullam nemo dolorum obcaecati. Ad? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut, exercitationem facilis distinctio quia nostrum recusandae dolore repellendus dolorem magni veniam ad. Commodi sint eius explicabo? Blanditiis at sunt minus ad debitis a ab nesciunt consequatur fuga omnis fugit labore pariatur nam maiores repellendus corrupti vitae dolore facilis quas reprehenderit nemo quidem quis, corporis molestias. Enim blanditiis nisi quas quod doloremque sed? Enim molestiae corporis nihil illo illum facere, debitis provident sunt quos, placeat praesentium ducimus ad? Architecto at fugit minus tenetur, quidem beatae expedita veritatis odit pariatur laborum aut non earum blanditiis quod neque. Error fuga veritatis illo tempore nostrum!
+          <strong style={gradientTextStyle}>Abstract:</strong> {project[0].abstract}
         </p>
         <p>
-          <strong>YouTube Link:</strong>{" "}
-          <a href="https://www.youtube.com/watch?v=example">
-            https://www.youtube.com/watch?v=example
+          <strong style={gradientTextStyle}>Description:</strong> {project[0].description}
+        </p>
+        <p>
+          <strong style={gradientTextStyle}>YouTube Link:</strong>{" "}
+          <a href={project[0].videolink} target="_blank" rel="noopener noreferrer">
+            {project[0].videolink}
           </a>
         </p>
         <p>
-          <strong>GitHub Link:</strong>{" "}
-          <a href="https://github.com/dummyuser/smart-agriculture">
-            https://github.com/dummyuser/smart-agriculture
+          <strong style={gradientTextStyle}>GitHub Link:</strong>{" "}
+          <a href={project[0].githublink} target="_blank" rel="noopener noreferrer">
+            {project[0].githublink}
           </a>
         </p>
         <p>
-          <strong>College/University Name:</strong> XYZ University
+          <strong style={gradientTextStyle}>College/University Name:</strong> {project[0].collegename}
         </p>
       </div>
+      <ToastContainer />
     </div>
   );
 };
