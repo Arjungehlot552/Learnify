@@ -3,7 +3,13 @@ import logo from "../assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { MdOutlineMail, MdOutlinePassword, MdOutlineBusiness, MdOutlinePerson, MdOutlineLink } from "react-icons/md";
+import {
+  MdOutlineMail,
+  MdOutlinePassword,
+  MdOutlineBusiness,
+  MdOutlinePerson,
+  MdOutlineLink,
+} from "react-icons/md";
 import axios from "axios";
 
 const MentorRegister = () => {
@@ -14,7 +20,12 @@ const MentorRegister = () => {
   const [company, setCompany] = useState("");
   const [designation, setDesignation] = useState("");
   const [linked, setLinked] = useState("");
+  const [image, setPhoto] = useState(null);
   const navigate = useNavigate();
+
+  const handlePhotoChange = (e) => {
+    setPhoto(e.target.files[0]);
+  };
 
   const register = async () => {
     if (!designation || !company || !linked || !name || !email) {
@@ -32,10 +43,26 @@ const MentorRegister = () => {
     }
 
     try {
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("email", email);
+      formData.append("designation", designation);
+      formData.append("company", company);
+      formData.append("linked", linked);
+      formData.append("password", password);
+      if (image) {
+        formData.append("image", image);
+      }
+
       const res = await axios.post(
         "http://localhost:4000/api/mentor/register-mentor",
-        { name, email, designation, company, linked, password },
-        { withCredentials: true }
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          withCredentials: true,
+        }
       );
       console.log(res);
       toast.success("Registered Successfully!");
@@ -54,12 +81,14 @@ const MentorRegister = () => {
         style={{ boxShadow: "0px 0px 10px 0px gray" }}
         className="h-fit py-5 w-[500px] rounded-xl shadow-black flex items-center justify-center gap-6 flex-col"
       >
-        <p className="text-2xl text-red-500 font-semibold ">Register as Mentor</p>
+        <p className="text-2xl text-red-500 font-semibold">
+          Register as Mentor
+        </p>
         <img src={logo} className="h-20 w-[300px] object-contain" alt="Logo" />
         <div className="flex w-full px-10 flex-col items-center justify-center gap-5 mt-4">
           <div className="relative w-full">
             <input
-              className="shadow-inner shadow-red-700 rounded-xl h-12 w-full px-8 border-none outline-none "
+              className="shadow-inner shadow-red-700 rounded-xl h-12 w-full px-8 border-none outline-none"
               type="text"
               value={name}
               placeholder="Enter Name"
@@ -69,7 +98,7 @@ const MentorRegister = () => {
           </div>
           <div className="relative w-full">
             <input
-              className="shadow-inner shadow-red-700 rounded-xl h-12 w-full px-8 border-none outline-none "
+              className="shadow-inner shadow-red-700 rounded-xl h-12 w-full px-8 border-none outline-none"
               type="email"
               value={email}
               placeholder="Enter Email"
@@ -132,10 +161,17 @@ const MentorRegister = () => {
             />
             <MdOutlinePassword className="absolute top-4 left-2 text-gray-500 font-bold" />
           </div>
-
+          <div className="relative w-full">
+            <input
+              className="border p-3 rounded-lg placeholder-black placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
+              type="file"
+              id="image"
+              onChange={handlePhotoChange}
+            />
+          </div>
           <button
             onClick={register}
-            className="h-12 w-full outline-blue-600 text-white bg-blue-600 outline-2 outline shadow-blue-800 rounded-lg text-xl font-semibold mt-2 hover:bg-white hover:text-black hover:font-semibold hover:transition-all duration-700 "
+            className="h-12 w-full outline-blue-600 text-white bg-blue-600 outline-2 outline shadow-blue-800 rounded-lg text-xl font-semibold mt-2 hover:bg-white hover:text-black hover:font-semibold hover:transition-all duration-700"
           >
             Register
           </button>

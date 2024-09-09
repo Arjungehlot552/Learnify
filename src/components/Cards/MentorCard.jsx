@@ -1,13 +1,12 @@
 import React from "react";
-import img1 from "../../assets/professor.jpg";
-import { Link } from "react-router-dom";
+import img1 from "../../assets/professor.avif";
 
 const MentorCard = ({ props }) => {
   return (
     <div className="h-fit p-3 w-96 shadow-lg shadow-gray-400 flex flex-col items-center gap-3 rounded-xl overflow-hidden">
       <img
-        className="w-full object-cover shadow-md rounded-lg h-[60%]"
-        src={img1}
+        className="object-cover w-full shadow-md rounded-lg h-56"
+        src={props.image ? props.image : img1}
         alt=""
       />
       <div className="flex w-full flex-col gap-2 justify-center items-center">
