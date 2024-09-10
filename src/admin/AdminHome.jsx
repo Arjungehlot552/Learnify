@@ -16,7 +16,7 @@ export const AdminHome = () => {
           ADMIN DASHBOARD
         </p>
       </div>
-      <div className="flex items-center justify-center gap-28">
+      <div className="flex items-center justify-center gap-20">
         <div className=" p-2 w-56 flex bg-red-600 rounded-lg items-center justify-between gap-2 flex-col ">
           <p className="text-lg font-semibold">Total Registerd Mentors</p>
           <LiaChalkboardTeacherSolid size={56} className="text-gray-400" />
