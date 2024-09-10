@@ -26,6 +26,8 @@ import AdminUsers from "./admin/AdminUsers.jsx";
 import ProjAdDetail from "./admin/fragments/ProjAdDetail.jsx";
 import ProDiaAd from "./admin/fragments/ProDiaAd.jsx";
 import IdeaCardAd from "./admin/fragments/IdeaCardAd.jsx";
+import UserProfile from "./pages/UserProfile.jsx";
+import MentorProfile from "./pages/MentorProfile.jsx";
 
 function App() {
   return (
@@ -38,6 +40,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/mentor-register" element={<MentorRegister />} />
           <Route path="/student-register" element={<StudentRegister />} />
+          <Route path="/user-profile" element={<UserProfile />} />
+          <Route path="/mentor-profile" element={<MentorProfile />} />
           <Route path="/upload-project" element={<ProjectForm />} />
           <Route path="/upload-idea" element={<IdeaForm />} />
           <Route path="/ideadisplay" element={<ProjectIdea />} />
@@ -57,6 +61,7 @@ function App() {
           <Route path="/admin-project-detail" element={<ProDiaAd/>} />
           <Route path="/admin-project-detail/:id" element={<ProjAdDetail/>} />
           <Route path="/admin-ideas-page" element={<IdeaCardAd/>} />
+       
         </Routes>
         <Footer />
       </Router>

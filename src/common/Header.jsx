@@ -138,7 +138,7 @@ const Header = () => {
                 Logout
               </button>
               {user ? (
-                <div className="relative group">
+                <Link to={"/user-profile"} className="relative group">
                   <FaUserLarge
                     size={28}
                     className={`${
@@ -148,9 +148,9 @@ const Header = () => {
                   <div className="absolute left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block top-8 bg-gray-400 text-black font-semibold text-xs rounded py-2 px-3">
                     User
                   </div>
-                </div>
+                </Link>
               ) : mentor ? (
-                <div className="relative group">
+                <Link to={'/mentor-profile'} className="relative group">
                   <FaUserGraduate
                     size={28}
                     className={`${
@@ -160,7 +160,7 @@ const Header = () => {
                   <div className="absolute left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block top-8 bg-gray-400 text-black font-semibold text-xs rounded py-2 px-2">
                     Mentor
                   </div>
-                </div>
+                </Link>
               ) : (
                 <div className="relative group">
                   <FaUserGraduate
