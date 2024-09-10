@@ -9,9 +9,14 @@ import {
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import {useThemeContext} from "../context/ThemeContext"
+import useAdminStore from "../store/adminStore";
 
 const Footer = () => {
   const {colorMode} = useThemeContext()
+
+  const {isAdmin} = useAdminStore((state) => ({
+    isAdmin : state.isAdmin
+  }))
    
 
   return (
@@ -44,6 +49,14 @@ const Footer = () => {
               >
                 <p>Contact Us</p>
               </Link>
+              {
+                isAdmin ? <Link
+                to={"/adminhome"}
+                className={`hover:text-blue-400 ${colorMode == "dark" ? "text-white font-semibold" : "text-black font-semibold"}`}
+              >
+                <p>Admin</p>
+              </Link> : ""
+              }
             </div>
           </div>
           <div>

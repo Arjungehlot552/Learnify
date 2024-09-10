@@ -3,8 +3,9 @@ import logo from "../assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useThemeContext } from "../context/ThemeContext";
 import { Moon, Sun } from "lucide-react";
-import useUserStore from "../store/userStore.js";
-import useMentorStore from "../store/mentorStore.js";
+import useUserStore from "../store/userStore";
+import useMentorStore from "../store/mentorStore";
+import useAdminStore from "../store/adminStore"; // Import the admin store
 import { FaUserLarge } from "react-icons/fa6";
 import { FaUserGraduate } from "react-icons/fa";
 import axios from "axios";
@@ -12,6 +13,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 const Header = () => {
   const navigate = useNavigate();
+
   const { user, fetchUser } = useUserStore((state) => ({
     user: state.user,
     fetchUser: state.fetchUser,
@@ -22,10 +24,15 @@ const Header = () => {
     fetchMentor: state.fetchMentor,
   }));
 
+  const { isAdmin, setIsAdmin } = useAdminStore((state) => ({
+    isAdmin: state.isAdmin,
+    setIsAdmin: state.setIsAdmin,
+  }));
+
   useEffect(() => {
     const getUserData = async () => {
-      if (!user && !mentor) {
-        // Fetch user only if neither user nor mentor is available
+      if (!user && !mentor && !isAdmin) {
+        // Fetch user only if neither user nor mentor nor admin is available
         try {
           await fetchUser();
         } catch (error) {
@@ -34,12 +41,12 @@ const Header = () => {
       }
     };
     getUserData();
-  }, [user, mentor, fetchUser]);
+  }, [user, mentor, isAdmin, fetchUser]);
 
   useEffect(() => {
     const getMentorData = async () => {
-      if (!mentor && !user) {
-        // Fetch mentor only if neither mentor nor user is available
+      if (!mentor && !user && !isAdmin) {
+        // Fetch mentor only if neither mentor nor user nor admin is available
         try {
           await fetchMentor();
         } catch (error) {
@@ -48,7 +55,7 @@ const Header = () => {
       }
     };
     getMentorData();
-  }, [mentor, user, fetchMentor]);
+  }, [mentor, user, isAdmin, fetchMentor]);
 
   const { colorMode, toggleColorMode } = useThemeContext();
 
@@ -64,7 +71,6 @@ const Header = () => {
       setTimeout(() => {
         navigate("/");
         window.location.reload();
-       
       }, 2000);
     } catch (error) {
       toast.error("Error logging out user!");
@@ -91,8 +97,23 @@ const Header = () => {
     }
   };
 
+  const handleAdminLogout = async () => {
+    try {
+      setIsAdmin(false);
+      toast.success("Admin logged out successfully!");
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
+    } catch (error) {
+      toast.error("Error logging out admin!");
+      console.log("Error while logging out admin:", error);
+    }
+  };
+
   const handleLogout = () => {
-    if (user) {
+    if (isAdmin) {
+      handleAdminLogout();
+    } else if (user) {
       handleUserLogout();
     } else if (mentor) {
       handleMentorLogout();
@@ -107,7 +128,7 @@ const Header = () => {
         </Link>
       </div>
       <div className="pl-[800px]">
-        {user || mentor ? (
+        {user || mentor || isAdmin ? (
           <div className="flex items-center justify-center gap-10">
             <div className="flex items-center justify-center gap-10">
               <button
@@ -128,7 +149,7 @@ const Header = () => {
                     User
                   </div>
                 </div>
-              ) : (
+              ) : mentor ? (
                 <div className="relative group">
                   <FaUserGraduate
                     size={28}
@@ -138,6 +159,18 @@ const Header = () => {
                   />
                   <div className="absolute left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block top-8 bg-gray-400 text-black font-semibold text-xs rounded py-2 px-2">
                     Mentor
+                  </div>
+                </div>
+              ) : (
+                <div className="relative group">
+                  <FaUserGraduate
+                    size={28}
+                    className={`${
+                      colorMode === "dark" ? "text-white" : "text-black"
+                    } cursor-pointer`}
+                  />
+                  <div className="absolute left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block top-8 bg-gray-400 text-black font-semibold text-xs rounded py-2 px-2">
+                    Admin
                   </div>
                 </div>
               )}

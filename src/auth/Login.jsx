@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { MdOutlineMail, MdOutlinePassword } from "react-icons/md";
 import RegisterChoice from "./RegisterChoice";
 import axios from "axios";
+import useAdminStore from "../store/adminStore";
 
 const Login = () => {
   const [email, setLoginEmail] = useState("");
@@ -13,7 +14,21 @@ const Login = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
+  const {adminEmail,adminPassword,setIsAdmin} = useAdminStore((state) => ({
+    adminEmail : state.adminEmail,
+    adminPassword : state.adminPassword,
+    setIsAdmin : (value) => state.setIsAdmin(value)
+  }))
+
+  
   const login = async () => {
+    
+    if (email === adminEmail && password === adminPassword){
+      setIsAdmin(true)
+      navigate("/adminhome")
+      return
+    }
+
     if (password.length < 6) {
       toast.error("Password should at least have 6 characters!");
       return;

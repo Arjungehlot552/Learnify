@@ -21,6 +21,7 @@ import Privacy from "./pages/Footer/Privacy.jsx";
 import Terms from "./pages/Footer/Terms.jsx";
 import UserGuidelines from "./pages/Footer/UserGuidelines.jsx";
 import ThemeProvider from "./context/ThemeContext.jsx";
+import { AdminHome } from "./admin/AdminHome.jsx";
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/guidelines" element={<UserGuidelines />} />
+          <Route path="/adminhome" element={<AdminHome/>} />
         </Routes>
         <Footer />
       </Router>
