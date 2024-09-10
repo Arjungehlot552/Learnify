@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import ScrollToTop from "../Other/ScrollToTop";
-import { useParams } from "react-router-dom";
+import ScrollToTop from "../../components/Other/ScrollToTop"
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
-import { useThemeContext } from "../../context/ThemeContext"; // Import your context
+import { useThemeContext } from "../../context/ThemeContext";
 
-const ProjectDetail = () => {
-  ScrollToTop();
+const ProjAdDetail = () => {
+  // ScrollToTop();
   const { id } = useParams();
   const [project, setProject] = useState(null);
   const { colorMode } = useThemeContext();
@@ -28,7 +28,7 @@ const ProjectDetail = () => {
   }, [id]);
 
   if (!project) {
-    return <div>Loading project details...</div>; // Loading state
+    return <div>Loading project details...</div>; 
   }
 
   const gradientTextStyle = colorMode === 'dark' ? {
@@ -79,10 +79,11 @@ const ProjectDetail = () => {
         <p>
           <strong style={gradientTextStyle}>College/University Name:</strong> {project[0].collegename}
         </p>
+      
       </div>
       <ToastContainer />
     </div>
   );
 };
 
-export default ProjectDetail;
+export default ProjAdDetail;

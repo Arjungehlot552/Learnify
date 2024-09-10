@@ -7,6 +7,7 @@ import mentor from "../assets/professor.avif";
 import idea from "../assets/ideapic.jpg";
 import projects from "../assets/projects.jpeg";
 import users from "../assets/user.jpg";
+import { Link } from "react-router-dom";
 
 export const AdminHome = () => {
   return (
@@ -16,7 +17,7 @@ export const AdminHome = () => {
           ADMIN DASHBOARD
         </p>
       </div>
-      <div className="flex items-center justify-center gap-20">
+      <div className="flex items-center justify-center gap-12">
         <div className=" p-2 w-56 flex bg-red-600 rounded-lg items-center justify-between gap-2 flex-col ">
           <p className="text-lg font-semibold">Total Registerd Mentors</p>
           <LiaChalkboardTeacherSolid size={56} className="text-gray-400" />
@@ -53,9 +54,9 @@ export const AdminHome = () => {
           </p>
           <img src={mentor} alt="" className="h-20" />
           <div>
-            <button className="outline hover:outline-3 hover:outline-blue-800 px-2 py-2 rounded-lg bg-blue-700 hover:bg-white hover:text-black text-white text-xl font-semibold">
+           <Link to="/mentor"> <button className="outline hover:outline-3 hover:outline-blue-800 px-2 py-2 rounded-lg bg-blue-700 hover:bg-white hover:text-black text-white text-xl font-semibold">
               View All Mentors
-            </button>
+            </button></Link>
           </div>
         </div>
         <div className="w-56 h-fit py-5 shadow-md p-5 shadow-red-400 flex items-center justify-center flex-col gap-5 rounded-lg">
@@ -64,9 +65,9 @@ export const AdminHome = () => {
           </p>
           <img src={idea} alt="" className="h-20" />
           <div>
-            <button className="outline hover:outline-3 hover:outline-blue-800 px-2 py-2 rounded-lg bg-blue-700 hover:bg-white hover:text-black text-white text-xl font-semibold">
+            <Link to={"/admin-ideas-page"}><button className="outline hover:outline-3 hover:outline-blue-800 px-2 py-2 rounded-lg bg-blue-700 hover:bg-white hover:text-black text-white text-xl font-semibold">
               View All Ideas
-            </button>
+            </button></Link>
           </div>
         </div>
         <div className="w-56 h-fit shadow-md p-5 py-5 shadow-red-400 flex items-center justify-center flex-col gap-5 rounded-lg">
@@ -75,9 +76,9 @@ export const AdminHome = () => {
           </p>
           <img src={projects} alt="" className="h-20" />
           <div>
-            <button className="outline hover:outline-3 hover:outline-blue-800 px-2 py-2 rounded-lg bg-blue-700 hover:bg-white hover:text-black text-white text-xl font-semibold">
+           <Link to={"/admin-project-detail"}> <button className="outline hover:outline-3 hover:outline-blue-800 px-2 py-2 rounded-lg bg-blue-700 hover:bg-white hover:text-black text-white text-xl font-semibold">
               View All Projects
-            </button>
+            </button></Link>
           </div>
         </div>
         <div className="w-56 h-fit py-5 shadow-md p-5 shadow-red-400 flex items-center justify-center flex-col gap-5 rounded-lg">
@@ -86,9 +87,11 @@ export const AdminHome = () => {
           </p>
           <img src={users} alt="" className="h-20" />
           <div>
-            <button className="outline hover:outline-3 hover:outline-blue-800 px-2 py-2 rounded-lg bg-blue-700 hover:bg-white hover:text-black text-white text-xl font-semibold">
+           <Link to={"/admin-users"}>
+           <button className="outline hover:outline-3 hover:outline-blue-800 px-2 py-2 rounded-lg bg-blue-700 hover:bg-white hover:text-black text-white text-xl font-semibold">
               View All Users
             </button>
+          </Link>
           </div>
         </div>
       </div>

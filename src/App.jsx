@@ -22,6 +22,10 @@ import Terms from "./pages/Footer/Terms.jsx";
 import UserGuidelines from "./pages/Footer/UserGuidelines.jsx";
 import ThemeProvider from "./context/ThemeContext.jsx";
 import { AdminHome } from "./admin/AdminHome.jsx";
+import AdminUsers from "./admin/AdminUsers.jsx";
+import ProjAdDetail from "./admin/fragments/ProjAdDetail.jsx";
+import ProDiaAd from "./admin/fragments/ProDiaAd.jsx";
+import IdeaCardAd from "./admin/fragments/IdeaCardAd.jsx";
 
 function App() {
   return (
@@ -49,6 +53,10 @@ function App() {
           <Route path="/terms" element={<Terms />} />
           <Route path="/guidelines" element={<UserGuidelines />} />
           <Route path="/adminhome" element={<AdminHome/>} />
+          <Route path="/admin-users" element={<AdminUsers/>} />
+          <Route path="/admin-project-detail" element={<ProDiaAd/>} />
+          <Route path="/admin-project-detail/:id" element={<ProjAdDetail/>} />
+          <Route path="/admin-ideas-page" element={<IdeaCardAd/>} />
         </Routes>
         <Footer />
       </Router>
