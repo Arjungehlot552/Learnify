@@ -23,12 +23,12 @@ import UserGuidelines from "./pages/Footer/UserGuidelines.jsx";
 import ThemeProvider from "./context/ThemeContext.jsx";
 import { AdminHome } from "./admin/AdminHome.jsx";
 import AdminUsers from "./admin/AdminUsers.jsx";
-import ProjAdDetail from "./admin/fragments/ProjAdDetail.jsx";
 import ProDiaAd from "./admin/fragments/ProDiaAd.jsx";
 import IdeaCardAd from "./admin/fragments/IdeaCardAd.jsx";
 import UserProfile from "./pages/UserProfile.jsx";
 import MentorProfile from "./pages/MentorProfile.jsx";
 import MentorCard2 from "./admin/fragments/MentorCard2.jsx";
+import College from "./College.jsx";
 
 function App() {
   return (
@@ -50,6 +50,7 @@ function App() {
           <Route path="/projectdetail/:id" element={<ProjectDetail />} />
           <Route path="/mentor" element={<Mentor />} />
           <Route path="/mentor-admin" element={<MentorCard2 />} />
+          <Route path="/college" element={<College />} />
           <Route path="/userguidelines" element={<UserGuidelines />} />
           <Route path="/about" element={<About />} />
           <Route path="/careers" element={<Careers />} />
@@ -61,7 +62,6 @@ function App() {
           <Route path="/adminhome" element={<AdminHome />} />
           <Route path="/admin-users" element={<AdminUsers />} />
           <Route path="/admin-project-detail" element={<ProDiaAd />} />
-          <Route path="/admin-project-detail/:id" element={<ProjAdDetail />} />
           <Route path="/admin-ideas-page" element={<IdeaCardAd />} />
         </Routes>
         <Footer />

@@ -25,8 +25,8 @@ const ProjectDisplay = () => {
   },[])
   
   return (
-    <div className="pl-28 pr-28">
-      <div className="h-fit w-fit py-16  shadow-xl rounded-xl flex justify-center flex-wrap gap-20">
+    <div className="pl-28 pr-28 pt-20 flex items-center justify-center h-fit ">
+      <div className="h-fit w-fit py-16 px-10 shadow-xl rounded-xl flex justify-center flex-wrap gap-20">
       {projects.map((item) => (
       <ProjectElement key={item._id} item={item} />
     ))}

@@ -43,7 +43,7 @@ const SmallProject = ({ item }) => {
           <p>{slicer(item.description)}</p>
           <div className="gap-3 flex absolute bottom-3  w-full">
             <Link
-              to={`/admin-project-detail/${item._id}`}
+              to={`/projectdetail/${item._id}`}
               className=""
             >
               <button className=" text-white outline hover:bg-white hover:text-black text-xl hover:outline-2 hover:outline-blue-600 bg-blue-700 transition-all duration-200  font-semibold rounded-lg p-2">

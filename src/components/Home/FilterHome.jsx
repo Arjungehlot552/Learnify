@@ -16,7 +16,7 @@ const Card = ({ img, title, description }) => {
           {title}
         </p>
         <p className="mt-2">{description}</p>
-        <Link to={"/projectdisplay"}>
+        <Link to={"/college"}>
           <button className="h-12 w-48 outline mt-8 rounded-xl hover:text-black text-white bg-blue-700 duration-300 hover:outline-blue-600 hover:bg-white font-semibold text-xl">
             Explore !
           </button>
