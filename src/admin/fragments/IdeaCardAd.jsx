@@ -3,12 +3,26 @@ import ScrollToTop from "../../components/Other/ScrollToTop";
 import axios from "axios";
 import { useThemeContext } from "../../context/ThemeContext"; // Import your context
 import { Link } from "react-router-dom";
+import { ToastContainer,toast } from "react-toastify";
 
 const IdeaCardAd = () => {
   ScrollToTop();
   const { colorMode } = useThemeContext(); // Get colorMode from context
 
   const Card = ({ props }) => {
+   
+    const handleDelete = async() => {
+      try {
+       console.log("heelo",props._id);
+        const res = await axios.delete(`http://localhost:4000/api/admin/deleteIdea/${props._id}`,{},{withCredentials:true})
+        console.log(res);
+        toast.success("Deleted successfully!")
+        setTimeout(()=>{window.location.reload()},2000)
+      } catch (error) {
+        console.log("Error deleting Idea",error);
+      }
+    }
+
     return (
       <div
         style={{ boxShadow: "0 0 5px 0.5px gray" }}
@@ -36,11 +50,12 @@ const IdeaCardAd = () => {
           {" "}
           <b>Requirements:</b> {props.requirements}
         </p>
-        <Link to={"/deleteidea"} className="absolute bottom-3 right-3 text-center  ">
+        <Link onClick={handleDelete} className="absolute bottom-3 right-3 text-center  ">
           <p className="py-2 rounded-lg px-3 w-fit bg-red-600 text-white text-xl">
             Delete this Idea
           </p>
         </Link>
+        <ToastContainer/>
       </div>
     );
   };
@@ -63,7 +78,7 @@ const IdeaCardAd = () => {
 
   return (
     <div
-      className={`flex min-h-[650px] h-fit w-full pt-20 ${
+      className={`flex min-h-[550px] h-fit w-full pt-20 ${
         colorMode === "dark"
           ? "bg-gray-900 text-gray-200"
           : "bg-gray-50 text-gray-800"
@@ -75,7 +90,7 @@ const IdeaCardAd = () => {
         } p-5`}
       >
         {ideas.length > 0 ? (
-          <div className="flex gap-12 items-start justify-start mx-28 h-fit flex-wrap">
+          <div className="flex gap-12 items-start justify-start mx-28 h-fit flex-col ">
             {ideas.map((item, key) => (
               <Card key={key} props={item} />
             ))}

@@ -1,10 +1,24 @@
+import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
+import {toast,ToastContainer} from 'react-toastify'
 
 const SmallProject = ({ item }) => {
   const slicer = (text) => {
     return text.slice(0, 55) + "...";
   };
+
+  const handleDelete = async() => {
+    try {
+      console.log("heelo",item._id);
+      const res = await axios.delete(`http://localhost:4000/api/admin/deleteProject/${item._id}`,{},{withCredentials:true})
+      console.log(res);
+      toast.success("Deleted successfully!")
+      setTimeout(()=>{window.location.reload()},2000)
+    } catch (error) {
+      console.log("Error deleting Project",error);
+    }
+  }
   return (
     <>
       <div
@@ -36,7 +50,7 @@ const SmallProject = ({ item }) => {
                 Read Project
               </button>
             </Link>
-            <Link className="text-center flex items-center justify-center">
+            <Link onClick={handleDelete} className="text-center flex items-center justify-center">
               <p className="py-2 rounded-lg px-3 w-fit bg-red-600 text-white text-xl">
                 Delete Project
               </p>
@@ -44,6 +58,7 @@ const SmallProject = ({ item }) => {
           </div>
         </div>
       </div>
+      <ToastContainer/>
     </>
   );
 };
