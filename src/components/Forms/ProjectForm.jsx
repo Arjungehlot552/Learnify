@@ -1,19 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ScrollToTop from "../Other/ScrollToTop";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import useUserStore from "../../store/userStore";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import useMentorStore from "../../store/mentorStore";
 
 const ProjectForm = () => {
   ScrollToTop();
   const navigate = useNavigate();
 
-  const {user} = useUserStore((state)=>(
-    {
-       user:state.user
+  const { user } = useUserStore((state) => ({
+    user: state.user,
+  }));
+  const { mentor } = useMentorStore((state) => ({
+    mentor: state.mentor,
+  }));
+
+  const [role, setRole] = useState("");
+
+  useEffect(() => {
+    if (user) {
+      setRole("student");
+    } else if (mentor) {
+      setRole("mentor");
     }
-  ))
+  }, [user, mentor]);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -46,13 +58,13 @@ const ProjectForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-   
-    if (!user){
-      toast.error("Please login first!")
-      setTimeout(()=>{
-        navigate("/login")
-      },2000)
-      return
+
+    if (!user && !mentor) {
+      toast.error("Please login first!");
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+      return;
     }
 
     if (!formData.image) {
@@ -68,27 +80,28 @@ const ProjectForm = () => {
       !formData.description ||
       !formData.videolink ||
       !formData.githublink ||
-      !formData.collegename
+      (user && !formData.collegename)
     ) {
       return toast.error("Fill in all required fields!");
     }
 
     const data = new FormData();
-    data.append("email", user.email);
+    if (user) data.append("email", user.email);
+    if (mentor) data.append("email", mentor.email);
     data.append("title", formData.title);
     data.append("domain", formData.domain);
     data.append("abstract", formData.abstract);
     data.append("description", formData.description);
     data.append("videolink", formData.videolink);
     data.append("githublink", formData.githublink);
-    data.append("collegename", formData.collegename);
+    if (user) data.append("collegename", formData.collegename);
     data.append("image", formData.image);
 
     console.log(data);
 
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/project/create-project",
+        `http://localhost:4000/api/${role}/create-project`,
         data,
         {
           headers: {
@@ -98,6 +111,9 @@ const ProjectForm = () => {
       );
       console.log(response.data);
       toast.success("Project uploaded successfully!");
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     } catch (error) {
       console.error("Error uploading project:", error);
       alert("There was an error uploading the project.");
@@ -194,15 +210,17 @@ const ProjectForm = () => {
                 value={formData.githublink}
                 onChange={handleChange}
               />
-              <input
-                type="text"
-                id="collegename"
-                className="border p-3 rounded-lg placeholder-black placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
-                placeholder="College/University Name"
-                value={formData.collegename}
-                onChange={handleChange}
-                required
-              />
+              {user && (
+                <input
+                  type="text"
+                  id="collegename"
+                  className="border p-3 rounded-lg placeholder-black placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
+                  placeholder="College/University Name"
+                  value={formData.collegename}
+                  onChange={handleChange}
+                  required
+                />
+              )}
               <div className="flex gap-4">
                 <input type="checkbox" id="terms" required />
                 <label htmlFor="terms" className="text-xs">

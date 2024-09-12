@@ -28,7 +28,10 @@ import IdeaCardAd from "./admin/fragments/IdeaCardAd.jsx";
 import UserProfile from "./pages/UserProfile.jsx";
 import MentorProfile from "./pages/MentorProfile.jsx";
 import MentorCard2 from "./admin/fragments/MentorCard2.jsx";
-import College from "./College.jsx";
+import College from "./pages/College.jsx";
+import Domain from "./pages/Domain.jsx";
+import MentorProjects from "./pages/MentorProjects.jsx";
+import ProjectDetailMentor from "./components/Cards/ProjectDetailMentor.jsx";
 
 function App() {
   return (
@@ -48,9 +51,12 @@ function App() {
           <Route path="/ideadisplay" element={<ProjectIdea />} />
           <Route path="/projectdisplay" element={<ProjectDisplay />} />
           <Route path="/projectdetail/:id" element={<ProjectDetail />} />
+          <Route path="/projectdetail-mentor/:id" element={<ProjectDetailMentor />} />
           <Route path="/mentor" element={<Mentor />} />
+          <Route path="/expert-projects" element={<MentorProjects />} />
           <Route path="/mentor-admin" element={<MentorCard2 />} />
           <Route path="/college" element={<College />} />
+          <Route path="/domain" element={<Domain />} />
           <Route path="/userguidelines" element={<UserGuidelines />} />
           <Route path="/about" element={<About />} />
           <Route path="/careers" element={<Careers />} />

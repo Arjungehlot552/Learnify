@@ -5,7 +5,7 @@ import domain from "../../assets/domain.jpg";
 import professor from "../../assets/professor.jpg";
 
 // Card Component
-const Card = ({ img, title, description }) => {
+const Card = ({ img, title, description ,link}) => {
   return (
     <div style={{boxShadow: "0 0 6px 1px gray"}} className="h-fit w-[30%] p-4 shadow-lg shadow-gray-400 rounded-xl mt-8 flex flex-col justify-left gap-8">
       <div>
@@ -16,7 +16,7 @@ const Card = ({ img, title, description }) => {
           {title}
         </p>
         <p className="mt-2">{description}</p>
-        <Link to={"/college"}>
+        <Link to={link}>
           <button className="h-12 w-48 outline mt-8 rounded-xl hover:text-black text-white bg-blue-700 duration-300 hover:outline-blue-600 hover:bg-white font-semibold text-xl">
             Explore !
           </button>
@@ -35,18 +35,21 @@ const FilterHome = () => {
       img: college,
       title: "College Specific Projects",
       description: "Explore colleges and their projects.",
+      link:"/college"
     },
     {
       id: 2,
       img: domain,
       title: "Domain Specific",
       description: "See projects from each domain.",
+      link:"/domain"
     },
     {
       id: 3,
       img: professor,
       title: "Expert's Projects",
       description: "Projects by experts and professors.",
+      link:"/expert-projects"
     },
   ];
 
@@ -58,6 +61,7 @@ const FilterHome = () => {
           img={filter.img}
           title={filter.title}
           description={filter.description}
+          link= {filter.link}
         />
       ))}
     </div>
