@@ -5,9 +5,10 @@ import { useThemeContext } from "../context/ThemeContext";
 import { Moon, Sun } from "lucide-react";
 import useUserStore from "../store/userStore";
 import useMentorStore from "../store/mentorStore";
-import useAdminStore from "../store/adminStore"; // Import the admin store
+import useAdminStore from "../store/adminStore"; 
 import { FaUserLarge } from "react-icons/fa6";
 import { FaUserGraduate } from "react-icons/fa";
+import { FaUserShield } from "react-icons/fa"; 
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -24,99 +25,58 @@ const Header = () => {
     fetchMentor: state.fetchMentor,
   }));
 
-  const { isAdmin, setIsAdmin } = useAdminStore((state) => ({
+  const { isAdmin, setIsAdmin, getAdmin } = useAdminStore((state) => ({
     isAdmin: state.isAdmin,
     setIsAdmin: state.setIsAdmin,
+    getAdmin: state.getAdmin,
   }));
 
   useEffect(() => {
-    const getUserData = async () => {
-      if (!user && !mentor && !isAdmin) {
-        // Fetch user only if neither user nor mentor nor admin is available
-        try {
-          await fetchUser();
-        } catch (error) {
-          console.error("Failed to fetch user:", error);
+    const getData = async () => {
+      try {
+        if (!user && !mentor) {
+          await getAdmin();
+         
         }
-      }
-    };
-    getUserData();
-  }, [user, mentor, isAdmin, fetchUser]);
+  
+        if (!mentor && !isAdmin) {
+           await fetchUser();
+        }
 
-  useEffect(() => {
-    const getMentorData = async () => {
-      if (!mentor && !user && !isAdmin) {
-        // Fetch mentor only if neither mentor nor user nor admin is available
-        try {
-          await fetchMentor();
-        } catch (error) {
-          console.error("Failed to fetch mentor:", error);
+        if (!isAdmin && !user) {
+           await fetchMentor();
         }
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
       }
     };
-    getMentorData();
-  }, [mentor, user, isAdmin, fetchMentor]);
+  
+    getData();
+  }, []);
+  
 
   const { colorMode, toggleColorMode } = useThemeContext();
 
-  const handleUserLogout = async () => {
+  const handleLogout = async () => {
     try {
-      const res = await axios.post(
-        "http://localhost:4000/api/student/logout",
-        {},
-        { withCredentials: true }
-      );
-      console.log(res);
-      toast.success("User logged out successfully!");
+      if (isAdmin) {
+        await axios.post("http://localhost:4000/api/admin/logout", {}, { withCredentials: true });
+        setIsAdmin(false);
+        toast.success("Admin logged out successfully!");
+      } else if (user) {
+        await axios.post("http://localhost:4000/api/student/logout", {}, { withCredentials: true });
+        toast.success("User logged out successfully!");
+      } else if (mentor) {
+        await axios.post("http://localhost:4000/api/mentor/logout", {}, { withCredentials: true });
+        toast.success("Mentor logged out successfully!");
+      }
       setTimeout(() => {
         navigate("/");
         window.location.reload();
       }, 2000);
     } catch (error) {
-      toast.error("Error logging out user!");
-      console.log("Error while logging out user:", error);
-    }
-  };
-
-  const handleMentorLogout = async () => {
-    try {
-      const res = await axios.post(
-        "http://localhost:4000/api/mentor/logout",
-        {},
-        { withCredentials: true }
-      );
-      console.log(res);
-      toast.success("Mentor logged out successfully!");
-      setTimeout(() => {
-        window.location.reload();
-        navigate("/");
-      }, 2000);
-    } catch (error) {
-      toast.error("Error logging out mentor!");
-      console.log("Error while logging out mentor:", error);
-    }
-  };
-
-  const handleAdminLogout = async () => {
-    try {
-      setIsAdmin(false);
-      toast.success("Admin logged out successfully!");
-      setTimeout(() => {
-        navigate("/");
-      }, 1000);
-    } catch (error) {
-      toast.error("Error logging out admin!");
-      console.log("Error while logging out admin:", error);
-    }
-  };
-
-  const handleLogout = () => {
-    if (isAdmin) {
-      handleAdminLogout();
-    } else if (user) {
-      handleUserLogout();
-    } else if (mentor) {
-      handleMentorLogout();
+      toast.error("Error logging out!");
+      console.log("Error while logging out:", error);
     }
   };
 
@@ -128,7 +88,7 @@ const Header = () => {
         </Link>
       </div>
       <div className="pl-[800px]">
-        {user || mentor || isAdmin ? (
+        {(user || mentor || isAdmin)? (
           <div className="flex items-center justify-center gap-10">
             <div className="flex items-center justify-center gap-10">
               <button
@@ -142,7 +102,7 @@ const Header = () => {
                   <FaUserLarge
                     size={28}
                     className={`${
-                      colorMode == "dark" ? "text-white" : "text-black"
+                      colorMode === "dark" ? "text-white" : "text-black"
                     } cursor-pointer`}
                   />
                   <div className="absolute left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block top-8 bg-gray-400 text-black font-semibold text-xs rounded py-2 px-3">
@@ -150,7 +110,7 @@ const Header = () => {
                   </div>
                 </Link>
               ) : mentor ? (
-                <Link to={'/mentor-profile'} className="relative group">
+                <Link to={"/mentor-profile"} className="relative group">
                   <FaUserGraduate
                     size={28}
                     className={`${
@@ -161,9 +121,9 @@ const Header = () => {
                     Mentor
                   </div>
                 </Link>
-              ) : (
-                <div className="relative group">
-                  <FaUserGraduate
+              ) : isAdmin ? (
+                <Link to={"/adminhome"} className="relative group">
+                  <FaUserShield
                     size={28}
                     className={`${
                       colorMode === "dark" ? "text-white" : "text-black"
@@ -172,8 +132,8 @@ const Header = () => {
                   <div className="absolute left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block top-8 bg-gray-400 text-black font-semibold text-xs rounded py-2 px-2">
                     Admin
                   </div>
-                </div>
-              )}
+                </Link>
+              ) : null}
             </div>
             <div
               onClick={toggleColorMode}

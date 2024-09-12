@@ -10,25 +10,16 @@ import useAdminStore from "../store/adminStore";
 const Login = () => {
   const [email, setLoginEmail] = useState("");
   const [password, setLoginPass] = useState("");
-  const [role, setRole] = useState("student"); 
+  const [role, setRole] = useState("student");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
-  const {adminEmail,adminPassword,setIsAdmin} = useAdminStore((state) => ({
-    adminEmail : state.adminEmail,
-    adminPassword : state.adminPassword,
-    setIsAdmin : (value) => state.setIsAdmin(value)
-  }))
+  const { setIsAdmin, setAdminData } = useAdminStore((state) => ({
+    setIsAdmin: state.setIsAdmin,
+    setAdminData: state.setAdminData,
+  }));
 
-  
   const login = async () => {
-    
-    if (email === adminEmail && password === adminPassword){
-      setIsAdmin(true)
-      navigate("/adminhome")
-      return
-    }
-
     if (password.length < 6) {
       toast.error("Password should at least have 6 characters!");
       return;
@@ -47,8 +38,13 @@ const Login = () => {
       );
       console.log(res.data);
       toast.success("Login Successful!");
+      if (role === "admin") {
+        setIsAdmin(true);
+      } else {
+        setIsAdmin(false);
+      }
       setTimeout(() => {
-        navigate("/");
+        navigate(role === "admin" ? "/adminhome" : "/");
         window.location.reload();
       }, 2000);
     } catch (error) {
@@ -68,21 +64,39 @@ const Login = () => {
       >
         <p className="text-4xl text-red-500 font-semibold">Login</p>
         <img src={logo} className="h-20 w-[300px] object-contain" alt="Logo" />
-        
+
         <div className="flex w-full px-10 flex-col items-center justify-center gap-8 mt-4">
-          <div className="mb-4">
+          <div className="mb-4 space-x-1">
             <label className="mr-4 font-semibold">Login as:</label>
             <button
               onClick={() => setRole("student")}
-              className={`px-4 py-2 rounded ${role === "student" ? "bg-blue-500 text-white font-semibold" : "bg-gray-200 font-semibold text-blue-600"}`}
+              className={`px-4 py-2 rounded ${
+                role === "student"
+                  ? "bg-blue-500 text-white font-semibold"
+                  : "bg-gray-200 font-semibold text-blue-600"
+              }`}
             >
               Student
             </button>
             <button
               onClick={() => setRole("mentor")}
-              className={`px-4 py-2 rounded ${role === "mentor" ? "bg-blue-500 text-white font-semibold" : "bg-gray-200 font-semibold text-blue-600"}`}
+              className={`px-4 py-2 rounded ${
+                role === "mentor"
+                  ? "bg-blue-500 text-white font-semibold"
+                  : "bg-gray-200 font-semibold text-blue-600"
+              }`}
             >
               Mentor
+            </button>
+            <button
+              onClick={() => setRole("admin")}
+              className={`px-4 py-2 rounded ${
+                role === "admin"
+                  ? "bg-blue-500 text-white font-semibold"
+                  : "bg-gray-200 font-semibold text-blue-600"
+              }`}
+            >
+              Admin
             </button>
           </div>
 
