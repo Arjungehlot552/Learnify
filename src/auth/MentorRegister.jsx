@@ -76,16 +76,15 @@ const MentorRegister = () => {
   };
 
   return (
-    <div className="h-fit py-12 flex items-center justify-center">
+    <div className="h-fit py-12 flex items-center justify-center px-4 md:px-0">
       <div
         style={{ boxShadow: "0px 0px 10px 0px gray" }}
-        className="h-fit py-5 w-[500px] rounded-xl shadow-black flex items-center justify-center gap-6 flex-col"
+        className="h-fit py-5 w-full max-w-[500px] rounded-xl shadow-black flex items-center justify-center gap-4 md:gap-6 flex-col"
       >
-        <p className="text-2xl text-red-500 font-semibold">
-          Register as Mentor
-        </p>
-        <img src={logo} className="h-20 w-[300px] object-contain" alt="Logo" />
-        <div className="flex w-full px-10 flex-col items-center justify-center gap-5 mt-4">
+        <p className="text-2xl text-red-500 font-semibold">Register as Mentor</p>
+        <img src={logo} className="h-12 w-[250px] md:w-[300px] object-contain" alt="Logo" />
+        
+        <div className="flex w-full px-6 md:px-10 flex-col items-center justify-center gap-5 mt-4">
           <div className="relative w-full">
             <input
               className="shadow-inner shadow-red-700 rounded-xl h-12 w-full px-8 border-none outline-none"
@@ -176,6 +175,7 @@ const MentorRegister = () => {
             Register
           </button>
         </div>
+        
         <p className="tracking-wide">
           Already have an account?{" "}
           <Link
@@ -189,6 +189,7 @@ const MentorRegister = () => {
       <ToastContainer />
     </div>
   );
+  
 };
 
 export default MentorRegister;

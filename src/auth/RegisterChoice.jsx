@@ -19,18 +19,18 @@ const RegisterChoice = ({ isOpen, onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-96 flex flex-col items-center justify-center gap-4">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-80 md:w-96 flex flex-col items-center justify-center gap-4">
         <h2 className="text-2xl font-bold mb-4 text-blue-600">Select Your Role</h2>
-        <div className="flex justify-center items-center gap-3 my-4">
+        <div className="flex justify-center items-center gap-2 md:gap-3 my-4">
           <button
             onClick={onClickMentor}
-            className="h-12 p-4 px-10 flex items-center justify-center text-white bg-blue-600 outline-none border-none hover:text-lg rounded-lg text-xl"
+            className="h-12 px-7 md:px-10 flex items-center justify-center text-white bg-blue-600 outline-none border-none hover:text-lg rounded-lg text-xl"
           >
             Mentor
           </button>
           <button
             onClick={onClickStudent}
-            className="h-12 p-4 px-10 flex items-center justify-center text-white bg-blue-600 outline-none border-none hover:text-lg rounded-lg text-xl"
+            className="h-12 px-7 md:px-10 flex items-center justify-center text-white bg-blue-600 outline-none border-none hover:text-lg rounded-lg text-xl"
           >
             Student
           </button>

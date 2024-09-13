@@ -5,19 +5,22 @@ import domain from "../../assets/domain.jpg";
 import professor from "../../assets/professor.jpg";
 
 // Card Component
-const Card = ({ img, title, description ,link}) => {
+const Card = ({ img, title, description, link }) => {
   return (
-    <div style={{boxShadow: "0 0 6px 1px gray"}} className="h-fit w-[30%] p-4 shadow-lg shadow-gray-400 rounded-xl mt-8 flex flex-col justify-left gap-8">
+    <div
+      style={{ boxShadow: "0 0 6px 1px gray" }}
+      className="h-fit w-full sm:w-[45%] md:w-[30%] p-4 shadow-lg shadow-gray-400 rounded-xl mt-8 flex flex-col justify-start gap-6"
+    >
       <div>
-        <img className="h-60 rounded-md w-full" src={img} alt="" />
+        <img className="h-60 rounded-md w-full object-cover" src={img} alt={title} />
       </div>
       <div className="flex flex-col h-full tracking-wide justify-center items-center">
-        <p className="text-xl font-semibold font-serif text-slate-600">
+        <p className="text-lg sm:text-xl font-semibold font-serif text-slate-600 text-center">
           {title}
         </p>
-        <p className="mt-2">{description}</p>
+        <p className="mt-2 text-sm sm:text-base text-center">{description}</p>
         <Link to={link}>
-          <button className="h-12 w-48 outline mt-8 rounded-xl hover:text-black text-white bg-blue-700 duration-300 hover:outline-blue-600 hover:bg-white font-semibold text-xl">
+          <button className="h-12 w-48 outline mt-8 rounded-xl hover:text-black text-white bg-blue-700 duration-300 hover:outline-blue-600 hover:bg-white font-semibold text-base sm:text-xl">
             Explore !
           </button>
         </Link>
@@ -35,33 +38,33 @@ const FilterHome = () => {
       img: college,
       title: "College Specific Projects",
       description: "Explore colleges and their projects.",
-      link:"/college"
+      link: "/college",
     },
     {
       id: 2,
       img: domain,
       title: "Domain Specific",
       description: "See projects from each domain.",
-      link:"/domain"
+      link: "/domain",
     },
     {
       id: 3,
       img: professor,
       title: "Expert's Projects",
       description: "Projects by experts and professors.",
-      link:"/expert-projects"
+      link: "/expert-projects",
     },
   ];
 
   return (
-    <div className="mt-12 flex h-fit w-full gap-4 justify-between">
+    <div className="mt-12 flex flex-wrap gap-2 md:gap-16 justify-center">
       {filters.map((filter) => (
         <Card
           key={filter.id}
           img={filter.img}
           title={filter.title}
           description={filter.description}
-          link= {filter.link}
+          link={filter.link}
         />
       ))}
     </div>

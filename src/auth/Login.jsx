@@ -57,20 +57,20 @@ const Login = () => {
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <div className="h-fit flex items-center justify-center pt-10">
+    <div className="h-fit flex items-center justify-center pt-10 md:pt-16 px-4">
       <div
         style={{ boxShadow: "0px 0px 10px 0.5px gray" }}
-        className="h-fit py-10 w-[500px] rounded-xl shadow-black flex items-center justify-center gap-8 flex-col"
+        className="h-fit py-4 md:py-10 w-full sm:w-[400px] md:w-[500px] rounded-xl shadow-black flex items-center justify-center gap-2 md:gap-6 flex-col"
       >
-        <p className="text-4xl text-red-500 font-semibold">Login</p>
-        <img src={logo} className="h-20 w-[300px] object-contain" alt="Logo" />
-
-        <div className="flex w-full px-10 flex-col items-center justify-center gap-8 mt-4">
-          <div className="mb-4 space-x-1">
-            <label className="mr-4 font-semibold">Login as:</label>
+        <p className="text-3xl md:text-4xl text-red-500 font-semibold">Login</p>
+        <img src={logo} className="h-20 w-[250px] md:w-[300px] object-contain" alt="Logo" />
+  
+        <div className="flex w-full px-4 sm:px-8 flex-col items-center justify-center gap-6 mt-4">
+          <div className="mb-4 space-x-1 items-center justify-center flex">
+            <label className="mr-2 md:mr-4 font-semibold">Login as:</label>
             <button
               onClick={() => setRole("student")}
-              className={`px-4 py-2 rounded ${
+              className={`px-1 py-1 md:px-4 md:py-2 rounded ${
                 role === "student"
                   ? "bg-blue-500 text-white font-semibold"
                   : "bg-gray-200 font-semibold text-blue-600"
@@ -80,7 +80,7 @@ const Login = () => {
             </button>
             <button
               onClick={() => setRole("mentor")}
-              className={`px-4 py-2 rounded ${
+              className={`px-1 py-1 md:px-4 md:py-2 rounded ${
                 role === "mentor"
                   ? "bg-blue-500 text-white font-semibold"
                   : "bg-gray-200 font-semibold text-blue-600"
@@ -90,7 +90,7 @@ const Login = () => {
             </button>
             <button
               onClick={() => setRole("admin")}
-              className={`px-4 py-2 rounded ${
+              className={`px-1 py-1 md:px-4 md:py-2 rounded ${
                 role === "admin"
                   ? "bg-blue-500 text-white font-semibold"
                   : "bg-gray-200 font-semibold text-blue-600"
@@ -99,7 +99,7 @@ const Login = () => {
               Admin
             </button>
           </div>
-
+  
           <div className="relative w-full">
             <input
               className="shadow-inner shadow-red-700 rounded-xl h-12 w-full px-8 border-none outline-none"
@@ -109,6 +109,7 @@ const Login = () => {
             />
             <MdOutlineMail className="absolute top-4 left-2 text-gray-500 font-bold" />
           </div>
+  
           <div className="relative w-full">
             <input
               required
@@ -119,16 +120,16 @@ const Login = () => {
             />
             <MdOutlinePassword className="absolute top-4 left-2 text-gray-500 font-bold" />
           </div>
-
+  
           <button
             onClick={login}
-            className="h-12 w-full outline-blue-600 text-white bg-blue-600 outline-2 outline shadow-blue-800 rounded-lg text-xl font-semibold mt-2 hover:bg-white  hover:font-semibold hover:transition-all duration-700 hover:text-black"
+            className="h-12 w-full outline-blue-600 text-white bg-blue-600 outline-2 outline shadow-blue-800 rounded-lg text-xl font-semibold mt-2 hover:bg-white hover:font-semibold hover:transition-all duration-700 hover:text-black"
           >
             Login
           </button>
         </div>
-
-        <p className="tracking-wide">
+  
+        <p className="tracking-wide pt-2">
           Don't have an account?{" "}
           <span
             onClick={openModal}
@@ -138,14 +139,15 @@ const Login = () => {
           </span>
         </p>
       </div>
-
+  
       <ToastContainer />
-
+  
       {isModalOpen && (
         <RegisterChoice isOpen={isModalOpen} onClose={closeModal} />
       )}
     </div>
   );
+  
 };
 
 export default Login;

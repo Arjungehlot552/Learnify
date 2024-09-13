@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import ScrollToTop from "../components/Other/ScrollToTop";
 import axios from "axios";
-import { useThemeContext } from "../context/ThemeContext"; // Import your context
+import { useThemeContext } from "../context/ThemeContext";
 import { Link } from "react-router-dom";
 import useUserStore from "../store/userStore";
+import ShortProjectDisplay from "../components/Cards/ShortProjectDisplay";
 
 const UserProfile = () => {
   ScrollToTop();
-  const { colorMode } = useThemeContext(); // Get colorMode from context
+  const { colorMode } = useThemeContext();
 
   const Card = ({ props }) => {
     return (
@@ -47,34 +48,51 @@ const UserProfile = () => {
   };
 
   const [ideas, setIdeas] = useState([]);
+  const [project, setProject] = useState([]);
 
-  const { user } = useUserStore((state) => ({ user: state.user }));
+  const { user, fetchUser } = useUserStore((state) => ({
+    user: state.user,
+    fetchUser: state.fetchUser,
+  }));
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
   useEffect(() => {
     const fetchIdeas = async () => {
       try {
-        // console.log("Fetching ideas...");
-        // console.log(user);
         const res = await axios.get(
-          `http://localhost:4000/api/student/getUserIdea/${user.email}`,
+          `http://localhost:4000/api/ideas/getIdeas`,
           { withCredentials: true }
         );
-        console.log(res.data.data);
-        setIdeas(res.data.data);
+        const res2 = await axios.get(
+          "http://localhost:4000/api/project/getAllProjects"
+        );
+        setIdeas(res.data.data.filter((item) => item.email == user.email));
+        setProject(res2.data.data.filter((item) => item.email == user.email))
+        console.log(project);
       } catch (error) {
         console.log("Error while fetching ideas!", error);
       }
     };
+
     fetchIdeas();
-  }, []);
+  }, [user]);
+
+  if (!user) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="px-40 pt-20 w-full h-fit min-h-[800px] flex flex-col gap-16">
-      <div><div className="w-full shadow-md shadow-gray-400 rounded-lg h-fit py-6 px-40">
-        <p>{user.name}</p>
-        <p>{user.email}</p>
-        <p></p>
-        </div></div>
+      <div>
+        <div className="w-full shadow-md shadow-gray-400 rounded-lg h-fit py-6 px-40">
+          <p>{user.name}</p>
+          <p>{user.email}</p>
+          <p></p>
+        </div>
+      </div>
       <div>
         <div
           className={`flex h-fit w-full ${
@@ -100,7 +118,32 @@ const UserProfile = () => {
           </div>
         </div>
       </div>
-      <div>ideas</div>
+      <div>
+        Projects
+        <div
+          className={`flex h-fit w-full ${
+            colorMode === "dark"
+              ? "bg-gray-900 text-gray-200"
+              : "bg-gray-50 text-gray-800"
+          }`}
+        >
+          <div
+            className={`w-full flex justify-center rounded-lg shadow-md ${
+              colorMode === "dark" ? "shadow-gray-700" : "shadow-gray-400"
+            } p-5`}
+          >
+            {project.length > 0 ? (
+              <div className="flex gap-12 items-start justify-start mx-28 h-fit w-full flex-wrap">
+                {project.map((item, key) => (
+                  <ShortProjectDisplay key={key} item={item} />
+                ))}
+              </div>
+            ) : (
+              <p>No Projects yet!</p>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

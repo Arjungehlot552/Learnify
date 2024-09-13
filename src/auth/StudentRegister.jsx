@@ -37,19 +37,20 @@ const StudentRegister = () => {
   };
 
   return (
-    <div className="h-fit py-12 pt-20 flex items-center justify-center">
+    <div className="h-fit py-12 pt-20 flex items-center justify-center px-4 md:px-0">
       <div
         style={{ boxShadow: "0px 0px 10px 0px gray" }}
-        className="h-fit py-5 w-[500px] rounded-xl shadow-black flex items-center justify-center gap-6 flex-col"
+        className="h-fit py-5 w-full max-w-[500px] rounded-xl shadow-black flex items-center justify-center gap-6 flex-col"
       >
-        <p className="text-2xl text-red-500 font-semibold ">
+        <p className="text-xl md:text-2xl text-red-500 font-semibold">
           Register as Student
         </p>
-        <img src={logo} className="h-20 w-[300px] object-contain" alt="" />
-        <div className="flex w-full px-10 flex-col items-center justify-center gap-5 mt-4">
+        <img src={logo} className="h-20 w-[250px] md:w-[300px] object-contain" alt="" />
+        
+        <div className="flex w-full px-6 md:px-10 flex-col items-center justify-center gap-5 mt-4">
           <div className="relative w-full">
             <input
-              className="shadow-inner shadow-red-700 rounded-xl h-12 w-full px-8 border-none outline-none "
+              className="shadow-inner shadow-red-700 rounded-xl h-12 w-full px-8 border-none outline-none"
               type="text"
               value={name}
               placeholder="Enter Name"
@@ -59,7 +60,7 @@ const StudentRegister = () => {
           </div>
           <div className="relative w-full">
             <input
-              className="shadow-inner shadow-red-700 rounded-xl h-12 w-full px-8 border-none outline-none "
+              className="shadow-inner shadow-red-700 rounded-xl h-12 w-full px-8 border-none outline-none"
               type="email"
               value={email}
               placeholder="Enter email"
@@ -89,25 +90,17 @@ const StudentRegister = () => {
             />
             <MdOutlinePassword className="absolute top-4 left-2 text-gray-500 font-bold" />
           </div>
-          {/* <select
-            className="shadow-inner text-lg shadow-red-700 rounded-xl h-12 w-full px-4 border-none outline-none"
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-          >
-            <option value="">Select your role</option>
-            <option value="Student">Student</option>
-            <option value="Mentor">Mentor</option>
-          </select> */}
-
+  
           <button
             onClick={register}
-            className="h-12 w-full outline-blue-600 text-white bg-blue-600 outline-2 outline shadow-blue-800 rounded-lg text-xl font-semibold mt-2 hover:bg-white  hover:font-semibold hover:transition-all duration-700 hover:text-black "
+            className="h-12 w-full outline-blue-600 text-white bg-blue-600 outline-2 outline shadow-blue-800 rounded-lg text-xl font-semibold mt-2 hover:bg-white hover:text-black hover:font-semibold hover:transition-all duration-700"
           >
             Register
           </button>
         </div>
-        <p className="tracking-wide">
-          Already have an account?{"  "}
+        
+        <p className="tracking-wide text-center">
+          Already have an account?{" "}
           <Link
             to="/login"
             className="font-semibold underline hover:scale-95 hover:text-blue-800"
@@ -119,6 +112,7 @@ const StudentRegister = () => {
       <ToastContainer />
     </div>
   );
+  
 };
 
 export default StudentRegister;
