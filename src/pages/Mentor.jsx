@@ -27,8 +27,8 @@ const Mentor = () => {
   }, []); // Empty dependency array to ensure this runs only once when the component mounts
 
   return (
-    <div className="pl-28 pr-28 flex items-center justify-center">
-      <div className="h-fit w-[1300px] p-8 px-10 shadow-xl rounded-xl flex justify-start items-center flex-wrap gap-8">
+    <div className="sm:px-6 md:px-10 w-full py-10 flex items-center justify-center">
+      <div className="h-fit w-[84%] py-4 lg:p-10 shadow-xl rounded-xl flex justify-center items-center flex-wrap gap-10">
         {mentors.length > 0 ? (
           mentors.map((mentor, index) => (
             <MentorCard key={index} props={mentor} />

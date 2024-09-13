@@ -61,12 +61,12 @@ const IdeaForm = () => {
   };
 
   return (
-    <div className="pl-40 pr-40 w-full flex justify-center items-center pt-20 ">
-      <div className="w-[40%] flex flex-col justify-center items-center shadow-lg shadow-gray-500 p-10 gap-4 rounded-xl">
-        <p className="w-full p-2 text-center rounded-xl outline outline-slate-300 text-lg font-semibold text-white bg-blue-700 ">
-          Provide project details
+    <div className="pl-4 pr-4 w-full flex justify-center items-center py-20 sm:pl-10 sm:pr-10">
+      <div className="w-full max-w-md flex flex-col justify-center items-center shadow-lg shadow-gray-500 p-6 gap-4 rounded-xl">
+        <p className="w-full p-2 text-center rounded-xl outline outline-slate-300 text-lg font-semibold text-white bg-blue-700">
+          Provide Idea details
         </p>
-        <div className=" w-full flex flex-col gap-4">
+        <div className="w-full flex flex-col gap-4">
           <input
             className="outline-1 outline outline-gray-400 shadow-inner rounded-xl w-full p-3"
             type="text"
@@ -116,6 +116,7 @@ const IdeaForm = () => {
       <ToastContainer />
     </div>
   );
+
 };
 
 export default IdeaForm;

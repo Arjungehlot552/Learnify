@@ -121,19 +121,19 @@ const ProjectForm = () => {
   };
 
   return (
-    <div className="w-full h-fit flex items-center justify-center">
+    <div className="w-full h-fit flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-10">
       <form
-        className="pl-40 pr-40 mt-20 h-fit w-[1200px] rounded-xl font-medium"
+        className="mt-10 lg:mt-20 w-full max-w-4xl mx-auto rounded-xl font-medium"
         onSubmit={handleSubmit}
       >
-        <div className="flex justify-center shadow-lg  shadow-gray-500 rounded-xl">
-          <div className="flex justify-center  w-full px-20">
-            <div className="mt-12 flex flex-col gap-4  w-full">
-              <div className="font-semibold font-serif bg-blue-500 text-white uppercase text-xl flex justify-center outline py-2 px-2 rounded-xl outline-slate-200">
+        <div className="flex justify-center shadow-lg shadow-gray-500 rounded-xl p-4">
+          <div className="w-full">
+            <div className="mt-1 md:mt-10 flex flex-col gap-4">
+              <div className="font-semibold font-serif bg-blue-500 text-white uppercase text-xl flex justify-center py-2 px-4 rounded-xl">
                 Upload Your Project Here
               </div>
               <input
-                className="border p-3 rounded-lg placeholder-gray-300 placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
+                className="border p-3 rounded-lg placeholder-gray-600 placeholder-opacity-50 border-b border-gray-500 focus:outline-none w-full"
                 type="text"
                 id="email"
                 placeholder="Enter your username"
@@ -142,7 +142,7 @@ const ProjectForm = () => {
                 required
               />
               <input
-                className="border p-3 rounded-lg placeholder-gray-300 placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
+                className="border p-3 rounded-lg placeholder-gray-600 placeholder-opacity-50 border-b border-gray-500 focus:outline-none w-full"
                 type="text"
                 id="title"
                 placeholder="Project title"
@@ -151,7 +151,7 @@ const ProjectForm = () => {
                 required
               />
               <select
-                className="border p-3 rounded-lg placeholder-gray-300 placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
+                className="border p-3 rounded-lg placeholder-gray-600 placeholder-opacity-50 border-b border-gray-500 focus:outline-none w-full"
                 id="domain"
                 value={formData.domain}
                 onChange={handleChange}
@@ -170,7 +170,7 @@ const ProjectForm = () => {
               </select>
 
               <textarea
-                className="border p-3 rounded-lg resize-none placeholder-gray-300 placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
+                className="border p-3 rounded-lg resize-none placeholder-gray-600 placeholder-opacity-50 border-b border-gray-500 focus:outline-none w-full"
                 id="abstract"
                 cols="5"
                 rows="5"
@@ -180,7 +180,7 @@ const ProjectForm = () => {
                 required
               ></textarea>
               <textarea
-                className="border p-3 rounded-lg resize-none placeholder-gray-300 placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
+                className="border p-3 rounded-lg resize-none placeholder-gray-600 placeholder-opacity-50 border-b border-gray-500 focus:outline-none w-full"
                 id="description"
                 cols="20"
                 rows="10"
@@ -191,7 +191,7 @@ const ProjectForm = () => {
               ></textarea>
 
               <input
-                className={`border p-3 rounded-lg placeholder-gray-300 placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full ${
+                className={`border p-3 rounded-lg placeholder-gray-600 placeholder-opacity-50 border-b border-gray-500 focus:outline-none w-full ${
                   formData.videolink ? `border-blue-600` : `text-black`
                 }`}
                 type="text"
@@ -201,7 +201,7 @@ const ProjectForm = () => {
                 onChange={handleChange}
               />
               <input
-                className={`border p-3 rounded-lg placeholder-gray-300 placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full ${
+                className={`border p-3 rounded-lg placeholder-gray-600 placeholder-opacity-50 border-b border-gray-500 focus:outline-none w-full ${
                   formData.githublink ? `border-blue-600` : `text-black`
                 }`}
                 type="text"
@@ -214,7 +214,7 @@ const ProjectForm = () => {
                 <input
                   type="text"
                   id="collegename"
-                  className="border p-3 rounded-lg placeholder-gray-300 placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
+                  className="border p-3 rounded-lg placeholder-gray-600 placeholder-opacity-50 border-b border-gray-500 focus:outline-none w-full"
                   placeholder="College/University Name"
                   value={formData.collegename}
                   onChange={handleChange}
@@ -242,7 +242,7 @@ const ProjectForm = () => {
                     </p>
                   </label>
                   <input
-                    className="border p-3 rounded-lg placeholder-black placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
+                    className="border p-3 rounded-lg placeholder-gray-600 placeholder-opacity-50 border-b border-gray-500 focus:outline-none w-full"
                     type="file"
                     id="image"
                     required

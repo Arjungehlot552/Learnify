@@ -57,20 +57,20 @@ const ProjectIdea = () => {
 
   return (
     <div
-      className={`flex flex-col items-center justify-center min-h-[750px] h-fit w-full py-20 -mb-20 ${
+      className={`flex flex-col items-center  justify-center min-h-[750px] h-fit w-full py-10 pb-10 -mb-20 ${
         colorMode === "dark"
           ? "bg-gray-900 text-gray-200"
           : "bg-gray-50 text-gray-800"
       }`}
     >
-      <p className="text-4xl font-bold">Ideas</p>
+      <p className="text-5xl font-bold">Ideas</p>
       <div
-        className={`w-fit mx-32 flex justify-center shadow-md ${
+        className={`w-fit mx-32 mb-10 flex justify-center shadow-md ${
           colorMode === "dark" ? "shadow-gray-700" : "shadow-gray-400"
         } p-5`}
       >
         {ideas.length > 0 ? (
-          <div className="flex gap-12 items-start justify-start mx-28 my-16 h-fit flex-wrap">
+          <div className="flex gap-12 items-start justify-start mx-0 md:mx-28 my-4 pb-10 md:my-16 h-fit flex-wrap">
             {ideas.map((item, key) => (
               <Card key={key} props={item} />
             ))}

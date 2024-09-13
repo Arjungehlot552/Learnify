@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import ScrollToTop from '../components/Other/ScrollToTop'
 
 const ProjectCard = ({ project }) => (
-  <div className="max-w-md bg-white shadow-lg rounded-lg overflow-hidden mb-8">
+  <div className="max-w-full bg-white shadow-lg rounded-lg overflow-hidden mb-8 sm:w-full ">
     <img
       src={project.image}
       alt={project.title}
@@ -43,6 +44,7 @@ const ProjectCard = ({ project }) => (
 );
 
 const College = () => {
+  ScrollToTop()
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -58,19 +60,16 @@ const College = () => {
     fetchData();
   }, []);
 
-  
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value.toLowerCase());
   };
-
 
   const filteredData = data.filter((uni) =>
     uni._id.toLowerCase().includes(searchTerm)
   );
 
   return (
-    <div className="container mx-auto px-28 pt-10">
-     
+    <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-28 pt-10">
       <div className="mb-6">
         <input
           type="text"
@@ -81,10 +80,9 @@ const College = () => {
         />
       </div>
 
-   
       {filteredData.length > 0 ? (
         filteredData.map((uni) => (
-          <div className='' key={uni._id}>
+          <div key={uni._id} className="mb-10">
             <h1 className="text-2xl font-bold mb-6">{uni._id}</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {uni.projects.map((project) => (

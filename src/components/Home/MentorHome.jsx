@@ -8,7 +8,7 @@ const MentorHome = () => {
       style={{ boxShadow: "0 0 6px 1px gray" }}
       className="h-fit w-full p-4 shadow-lg shadow-gray-400 rounded-xl mt-16 flex flex-col md:flex-row justify-center gap-8 items-center"
     >
-      <div className="w-full md:w-[50%]">
+      <div className="w-full p-4 md:w-[50%]">
         <img
           className="object-cover h-full w-full rounded-md"
           src={info}

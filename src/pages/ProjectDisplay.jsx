@@ -27,9 +27,9 @@ const ProjectDisplay = () => {
   },[])
   
   return (
-    <div className="pl-28 pr-28 pt-20 flex flex-col items-center justify-center h-fit min-h-[700px] ">
-      <p className="text-4xl font-bold">{domain}</p>
-      <div className="h-fit w-fit py-16 px-10 shadow-xl rounded-xl flex justify-center flex-wrap gap-20">
+    <div className="pl-28 pr-28 pt-10 flex flex-col items-center justify-center h-fit min-h-[700px] ">
+      <p className="text-5xl font-bold">{domain}</p>
+      <div className="h-fit w-fit py-10 px-10 shadow-xl rounded-xl flex justify-center flex-wrap gap-10 md:gap-20">
       {projects.length > 0 ? (projects.map((item) => (
       <ProjectElement key={item._id} item={item} />
     ))):(<p className="text-4xl">No projects found for this domain!</p>)}

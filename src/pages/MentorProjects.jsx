@@ -65,8 +65,8 @@ const MentorProjects = () => {
   },[])
 
   return (
-    <div className="pl-28 pr-28 pt-20 flex items-center justify-center h-fit ">
-      <div className="h-fit min-h-[600px] w-fit py-16 px-10 shadow-xl rounded-xl flex justify-center flex-wrap gap-20">
+    <div className="px-4 md:px-28  flex items-center justify-center h-fit ">
+      <div className="h-fit min-h-[600px]  w-fit py-16 px-1 md:px-10 md:shadow-xl rounded-xl flex justify-center flex-wrap gap-20">
       {projects.length > 0 ? (projects.map((item) => (
       <ProjectCard key={item._id} project={item} />
     ))):(<p className='text-5xl'>No projects found!</p>)}

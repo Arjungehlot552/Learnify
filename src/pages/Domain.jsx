@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ScrollToTop from '../components/Other/ScrollToTop'
 
 const ProjectCard = ({ project }) => (
-  <div className="max-w-md bg-white shadow-lg rounded-lg overflow-hidden mb-8">
+  <div className="max-w-full bg-white shadow-lg rounded-lg overflow-hidden mb-8 sm:w-full ">
     <img
       src={project.image}
       alt={project.title}
@@ -19,10 +20,16 @@ const ProjectCard = ({ project }) => (
         <span className="font-semibold">Email:</span> {project.email}
       </p>
       <div className="mt-4 flex space-x-4">
-        <a href={project.videolink} className="text-blue-500 hover:underline">
+        <a
+          href={project.videolink}
+          className="text-blue-500 hover:underline"
+        >
           Video
         </a>
-        <a href={project.githublink} className="text-blue-500 hover:underline">
+        <a
+          href={project.githublink}
+          className="text-blue-500 hover:underline"
+        >
           GitHub
         </a>
         <Link
@@ -37,6 +44,7 @@ const ProjectCard = ({ project }) => (
 );
 
 const Domain = () => {
+  ScrollToTop()
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -63,7 +71,7 @@ const Domain = () => {
   );
 
   return (
-    <div className="container mx-auto px-28 pt-10">
+    <div className="container mx-auto px-4 md:px-28 pt-10">
      
       <div className="mb-6">
         <input

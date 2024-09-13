@@ -27,7 +27,7 @@ const IdeaDisplay = () => {
           inspiration for your next big project.
         </p>
         <Link to={"/ideadisplay"}>
-          <button className="h-12 p-3 flex items-center justify-center outline mt-2 md:mt-8 rounded-xl hover:text-black text-white bg-blue-700 duration-300 hover:outline-blue-600 hover:bg-white font-semibold text-base sm:text-xl">
+          <button className="h-12 w-full p-3 flex items-center justify-center outline mt-2 md:mt-8 rounded-xl hover:text-black text-white bg-blue-700 duration-300 hover:outline-blue-600 hover:bg-white font-semibold text-base sm:text-xl">
             View Project Ideas
           </button>
         </Link>
