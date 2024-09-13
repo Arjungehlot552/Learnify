@@ -84,7 +84,7 @@ const Header = () => {
     <div className="outline outline-blue-100 outline-2 h-20 w-full px-4 sm:px-10 md:pl-44 flex items-center justify-between">
       <div>
         <Link to={"/"}>
-          <img className="h-7 md:h-12 " src={logo} alt="Logo" />
+          <img className="h-9 md:h-12 " src={logo} alt="Logo" />
         </Link>
       </div>
   

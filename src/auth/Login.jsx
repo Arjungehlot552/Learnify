@@ -57,10 +57,10 @@ const Login = () => {
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <div className="h-fit flex items-center justify-center pt-10 md:pt-16 px-4">
+    <div className="h-fit flex items-center justify-center py-16 md:py-0 md:pt-16 px-4">
       <div
         style={{ boxShadow: "0px 0px 10px 0.5px gray" }}
-        className="h-fit py-4 md:py-10 w-full sm:w-[400px] md:w-[500px] rounded-xl shadow-black flex items-center justify-center gap-2 md:gap-6 flex-col"
+        className="h-fit py-6 md:py-10 w-full sm:w-[400px] md:w-[500px] rounded-xl shadow-black flex items-center justify-center gap-2 md:gap-6 flex-col"
       >
         <p className="text-3xl md:text-4xl text-red-500 font-semibold">Login</p>
         <img src={logo} className="h-20 w-[250px] md:w-[300px] object-contain" alt="Logo" />

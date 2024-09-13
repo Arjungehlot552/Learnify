@@ -1,9 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const IdeaDisplay = () => {
   return (
-    <div className="mt-16 px-4  md:px-0">
+    <div className="mt-16">
       <div
         style={{ boxShadow: "0 0 6px 1px gray" }}
         className="h-fit w-full p-4 shadow-lg shadow-gray-400 rounded-xl mt-8 flex flex-col sm:flex-row gap-8"
@@ -23,8 +23,8 @@ const IdeaDisplay = () => {
             Collaborate with students, researchers, and like-minded people to
             shape your ideas into reality.
           </p>
-          <Link to={'/upload-idea'}>
-            <button className="h-12 p-3 flex items-center justify-center outline mt-8 rounded-xl hover:text-black text-white bg-blue-700 duration-300 hover:outline-blue-600 hover:bg-white font-semibold text-base sm:text-xl">
+          <Link to={"/upload-idea"}>
+            <button className="h-12 p-3 flex items-center justify-center outline mt-4 md:mt-8 rounded-xl hover:text-black text-white bg-blue-700 duration-300 hover:outline-blue-600 hover:bg-white font-semibold text-base sm:text-xl">
               Post your project idea
             </button>
           </Link>
