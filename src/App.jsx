@@ -49,7 +49,7 @@ function App() {
           <Route path="/upload-project" element={<ProjectForm />} />
           <Route path="/upload-idea" element={<IdeaForm />} />
           <Route path="/ideadisplay" element={<ProjectIdea />} />
-          <Route path="/projectdisplay" element={<ProjectDisplay />} />
+          <Route path="/projectdisplay/:domain" element={<ProjectDisplay />} />
           <Route path="/projectdetail/:id" element={<ProjectDetail />} />
           <Route path="/projectdetail-mentor/:id" element={<ProjectDetailMentor />} />
           <Route path="/mentor" element={<Mentor />} />

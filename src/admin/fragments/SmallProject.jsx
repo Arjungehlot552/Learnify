@@ -30,8 +30,8 @@ const SmallProject = ({ item }) => {
           src={item.image}
           alt=""
         />
-        <div className="flex w-full flex-col gap-2 text-md items-start justify-start">
-          <p className="w-full text-center text-2xl text-blue-700 font-semibold">
+        <div className="flex w-full flex-col gap-1 text-md items-start justify-start">
+          <p className="w-full text-center text-xl text-blue-700 font-semibold">
             {item.title}
           </p>
           <p>

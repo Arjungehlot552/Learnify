@@ -133,7 +133,7 @@ const ProjectForm = () => {
                 Upload Your Project Here
               </div>
               <input
-                className="border p-3 rounded-lg placeholder-black placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
+                className="border p-3 rounded-lg placeholder-gray-300 placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
                 type="text"
                 id="email"
                 placeholder="Enter your username"
@@ -142,7 +142,7 @@ const ProjectForm = () => {
                 required
               />
               <input
-                className="border p-3 rounded-lg placeholder-black placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
+                className="border p-3 rounded-lg placeholder-gray-300 placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
                 type="text"
                 id="title"
                 placeholder="Project title"
@@ -151,7 +151,7 @@ const ProjectForm = () => {
                 required
               />
               <select
-                className="border p-3 rounded-lg placeholder-black placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
+                className="border p-3 rounded-lg placeholder-gray-300 placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
                 id="domain"
                 value={formData.domain}
                 onChange={handleChange}
@@ -170,7 +170,7 @@ const ProjectForm = () => {
               </select>
 
               <textarea
-                className="border p-3 rounded-lg resize-none placeholder-black placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
+                className="border p-3 rounded-lg resize-none placeholder-gray-300 placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
                 id="abstract"
                 cols="5"
                 rows="5"
@@ -180,7 +180,7 @@ const ProjectForm = () => {
                 required
               ></textarea>
               <textarea
-                className="border p-3 rounded-lg resize-none placeholder-black placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
+                className="border p-3 rounded-lg resize-none placeholder-gray-300 placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
                 id="description"
                 cols="20"
                 rows="10"
@@ -191,7 +191,7 @@ const ProjectForm = () => {
               ></textarea>
 
               <input
-                className={`border p-3 rounded-lg placeholder-black placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full ${
+                className={`border p-3 rounded-lg placeholder-gray-300 placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full ${
                   formData.videolink ? `border-blue-600` : `text-black`
                 }`}
                 type="text"
@@ -201,7 +201,7 @@ const ProjectForm = () => {
                 onChange={handleChange}
               />
               <input
-                className={`border p-3 rounded-lg placeholder-black placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full ${
+                className={`border p-3 rounded-lg placeholder-gray-300 placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full ${
                   formData.githublink ? `border-blue-600` : `text-black`
                 }`}
                 type="text"
@@ -210,11 +210,11 @@ const ProjectForm = () => {
                 value={formData.githublink}
                 onChange={handleChange}
               />
-              {user && (
+              {!mentor && (
                 <input
                   type="text"
                   id="collegename"
-                  className="border p-3 rounded-lg placeholder-black placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
+                  className="border p-3 rounded-lg placeholder-gray-300 placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
                   placeholder="College/University Name"
                   value={formData.collegename}
                   onChange={handleChange}

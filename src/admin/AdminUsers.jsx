@@ -18,13 +18,16 @@ const AdminUsers = () => {
     fetchUsers();
   }, []);
 
-  return <div className="pt-20 flex flex-wrap items-center w-full justify-center gap-20">
-    <div className="flex flex-wrap items-center w-full justify-center gap-16">
-    {users.map((item)=>(
-        <UserCard key={item._id} item = {item}/>
-    ))}
+  return (
+    <div className="pt-20 flex flex-wrap items-center w-full justify-center gap-10">
+      <p className="text-5xl text-center font-bold">Users</p>
+      <div className="flex flex-wrap items-center w-full justify-center gap-16">
+        {users.map((item) => (
+          <UserCard key={item._id} item={item} />
+        ))}
+      </div>
     </div>
-  </div>;
+  );
 };
 
 export default AdminUsers;

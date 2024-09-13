@@ -3,30 +3,35 @@ import ScrollToTop from "../../components/Other/ScrollToTop";
 import axios from "axios";
 import { useThemeContext } from "../../context/ThemeContext"; // Import your context
 import { Link } from "react-router-dom";
-import { ToastContainer,toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 
 const IdeaCardAd = () => {
   ScrollToTop();
   const { colorMode } = useThemeContext(); // Get colorMode from context
 
   const Card = ({ props }) => {
-   
-    const handleDelete = async() => {
+    const handleDelete = async () => {
       try {
-       console.log("heelo",props._id);
-        const res = await axios.delete(`http://localhost:4000/api/admin/deleteIdea/${props._id}`,{},{withCredentials:true})
+        console.log("heelo", props._id);
+        const res = await axios.delete(
+          `http://localhost:4000/api/admin/deleteIdea/${props._id}`,
+          {},
+          { withCredentials: true }
+        );
         console.log(res);
-        toast.success("Deleted successfully!")
-        setTimeout(()=>{window.location.reload()},2000)
+        toast.success("Deleted successfully!");
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
       } catch (error) {
-        console.log("Error deleting Idea",error);
+        console.log("Error deleting Idea", error);
       }
-    }
+    };
 
     return (
       <div
         style={{ boxShadow: "0 0 5px 0.5px gray" }}
-        className={`flex relative flex-col p-3 rounded-xl w-full h-fit items-start justify-start gap-2 text-md ${
+        className={`flex relative flex-col p-3 rounded-sm w-full h-fit items-start justify-start gap-2 text-md ${
           colorMode === "dark"
             ? "bg-gray-800 text-gray-200"
             : "bg-gray-100 text-gray-800"
@@ -50,12 +55,15 @@ const IdeaCardAd = () => {
           {" "}
           <b>Requirements:</b> {props.requirements}
         </p>
-        <Link onClick={handleDelete} className="absolute bottom-3 right-3 text-center  ">
+        <Link
+          onClick={handleDelete}
+          className="absolute bottom-3 right-3 text-center  "
+        >
           <p className="py-2 rounded-lg px-3 w-fit bg-red-600 text-white text-xl">
             Delete this Idea
           </p>
         </Link>
-        <ToastContainer/>
+        <ToastContainer />
       </div>
     );
   };
@@ -78,19 +86,20 @@ const IdeaCardAd = () => {
 
   return (
     <div
-      className={`flex min-h-[550px] h-fit w-full pt-20 ${
+      className={`flex min-h-[550px] h-fit w-full py-20 -mb-20 ${
         colorMode === "dark"
           ? "bg-gray-900 text-gray-200"
           : "bg-gray-50 text-gray-800"
       }`}
     >
       <div
-        className={`w-fit mx-32 flex justify-center shadow-md ${
+        className={`w-fit mx-32 flex flex-col justify-center shadow-md ${
           colorMode === "dark" ? "shadow-gray-700" : "shadow-gray-400"
         } p-5`}
       >
+        <p className="text-5xl font-bold text-center p-6">IDEAS</p>
         {ideas.length > 0 ? (
-          <div className="flex gap-12 items-start justify-start mx-28 h-fit flex-col ">
+          <div className="flex gap-12 items-start justify-start mx-28 h-fit flex-col mb-10 ">
             {ideas.map((item, key) => (
               <Card key={key} props={item} />
             ))}

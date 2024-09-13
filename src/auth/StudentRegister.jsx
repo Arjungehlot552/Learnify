@@ -28,11 +28,9 @@ const StudentRegister = () => {
     const res = await axios.post("http://localhost:4000/api/student/register-student",{name,email,password})
    
     console.log(res);
-    alert("registered")
-
     toast.success("Registered successfully!");
     setTimeout(() => {
-      navigate("/");
+      navigate("/login");
     }, 2000);
      
 

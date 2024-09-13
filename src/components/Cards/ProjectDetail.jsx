@@ -43,9 +43,9 @@ const ProjectDetail = () => {
     >
       <div
         style={{ boxShadow: "0 0 5px 0.5px gray" }}
-        className={`w-[60%] ${colorMode === 'dark' ? 'bg-gray-900 text-gray-200' : 'bg-white text-gray-800'} flex p-8 rounded-2xl flex-col items-start justify-center gap-5`}
+        className={`w-[60%] ${colorMode === 'dark' ? 'bg-gray-900 text-gray-200' : 'bg-white text-gray-800'} flex p-8 rounded-lg flex-col items-start justify-center gap-5`}
       >
-        <img src={project[0].image} className="w-full" alt="" />
+        <img src={project[0].image} className="w-full h-[500px] object-cover" alt="" />
         <p>
           <strong style={gradientTextStyle}>Name:</strong> {project[1].name}
         </p>

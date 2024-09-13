@@ -61,8 +61,8 @@ const Header = () => {
     try {
       if (isAdmin) {
         await axios.post("http://localhost:4000/api/admin/logout", {}, { withCredentials: true });
-        setIsAdmin(false);
         toast.success("Admin logged out successfully!");
+        setIsAdmin(false);
       } else if (user) {
         await axios.post("http://localhost:4000/api/student/logout", {}, { withCredentials: true });
         toast.success("User logged out successfully!");

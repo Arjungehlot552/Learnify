@@ -32,17 +32,17 @@ export const UserCard = ({ item }) => {
 
   return (
     <div
-      style={{ boxShadow: "0 0 5px 2px blue" }}
-      className="p-4 min-w-96 rounded-2xl text-xl h-fit flex flex-col gap-3"
+      style={{ boxShadow: "0 0 5px 2px pink" }}
+      className="p-5 min-w-96 rounded-sm text-xl h-fit flex flex-col gap-3"
     >
-      <p>
-        <b>Username:</b> {item.name}
+            <p className="text-center">
+        <b> {item.name}</b>
       </p>
       <p>
         <b>User's email:</b> {item.email}
       </p>
       <p>
-        <b>Date:</b> {formatDate(item.createdAt)}
+        <b>Date joined:</b> {formatDate(item.createdAt)}
       </p>
       <div
         onClick={handleDelete}

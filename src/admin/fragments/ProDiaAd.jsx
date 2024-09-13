@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import ProjectElement from "../fragments/SmallProject";
 import ProjectElement2 from "../fragments/SmallProject2";
 import ScrollToTop from "../../components/Other/ScrollToTop";
@@ -31,21 +31,30 @@ const ProDiaAd = () => {
     fetchProjects();
   }, []);
 
+  // Memoize the project lists
+  const memoizedStudentProjects = useMemo(() => {
+    return projects.map((item) => (
+      <ProjectElement key={item._id} item={item} />
+    ));
+  }, [projects]);
+
+  const memoizedMentorProjects = useMemo(() => {
+    return mentor.length > 0 ? (
+      mentor.map((item) => <ProjectElement2 key={item._id} item={item} />)
+    ) : (
+      <p className="text-2xl">No mentor projects!</p>
+    );
+  }, [mentor]);
+
   return (
-    <div className="pl-28 pr-28 flex items-center justify-center h-fit flex-col pt-16">
-      <p className="text-4xl font-bold">Students Projects</p>
-      <div className="h-fit w-fit py-16 pl-10 items-center justify-center shadow-xl rounded-xl flex flex-wrap gap-10">
-      
-        {projects.map((item) => (
-          <ProjectElement key={item._id} item={item} />
-        ))}
+    <div className=" flex px-28 items-center justify-center h-fit flex-col pt-16">
+      <p className="text-5xl font-bold">Student's Projects</p>
+      <div className="h-fit w-fit py-10 px-10 items-center justify-center shadow-xl rounded-xl flex flex-wrap gap-7">
+        {memoizedStudentProjects}
       </div>
-      <p className="mt-10 text-4xl font-bold">Mentors Projects</p>
+      <p className="mt-10 text-5xl font-bold">Mentor's Projects</p>
       <div className="h-fit w-fit py-16 p-10 items-center justify-center shadow-xl rounded-xl flex-wrap flex gap-10">
-        {mentor.length > 0 ? (mentor.map((item) => (
-          <ProjectElement2 key={item._id} item={item} />
-        ))) : (<p className="text-2xl">No mentor projects!</p>
-        )}
+        {memoizedMentorProjects}
       </div>
       <ToastContainer />
     </div>

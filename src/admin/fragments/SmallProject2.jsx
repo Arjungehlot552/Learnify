@@ -10,7 +10,7 @@ const SmallProject2 = ({ item }) => {
 
   const handleDelete = async () => {
     try {
-      console.log("heelo", item._id);
+      // console.log("heelo", item._id);
       const res = await axios.delete(
         `http://localhost:4000/api/admin/deleteProjectMentor/${item._id}`,
         {},
