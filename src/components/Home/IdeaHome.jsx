@@ -15,7 +15,7 @@ const IdeaDisplay = () => {
             alt="Idea Display"
           />
         </div>
-        <div className="flex flex-col h-full w-full pt-0 md:pt-16 sm:w-[60%] tracking-wide justify-center items-center sm:items-start text-center sm:text-left">
+        <div className="flex flex-col h-full w-full pt-0 md:pt-10 sm:w-[60%] tracking-wide justify-center items-center sm:items-start text-center sm:text-left">
           <p className="text-3xl sm:text-6xl font-semibold font-serif text-slate-600">
             Bring your ideas to life!
           </p>

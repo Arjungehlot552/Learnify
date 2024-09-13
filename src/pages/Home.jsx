@@ -15,10 +15,10 @@ const Home = () => {
 
   return (
     <>
-      <div className="px-4 md:px-10 lg:px-40">
+      <div className="px-4 md:px-10 lg:px-36">
         <div className="w-full md:pt-12 h-fit mt-16 flex flex-col lg:flex-row lg:justify-between">
           <div className="flex flex-col items-start px-4 md:px-6 lg:w-[50%]">
-            <p className="text-2xl flex flex-col gap-1 md:gap-3 md:text-4xl lg:text-5xl font-serif md:tracking-wide md:leading-loose font-bold text-slate-600">
+            <p className="text-2xl flex flex-col gap-1 md:gap-3 md:text-4xl lg:text-5xl font-serif  md:leading-loose font-bold text-slate-600">
               <p>Empower Your Ideas,</p> <p>Elevate Your Projects,</p> <p> Seamless
               Uploading,</p> <p>Limitless Possibilities!</p> 
             </p>

@@ -57,7 +57,7 @@ const FilterHome = () => {
   ];
 
   return (
-    <div className="mt-12 flex flex-wrap gap-2 md:gap-16 justify-center">
+    <div className="mt-12 flex flex-wrap gap-2 md:gap-10 justify-center">
       {filters.map((filter) => (
         <Card
           key={filter.id}
