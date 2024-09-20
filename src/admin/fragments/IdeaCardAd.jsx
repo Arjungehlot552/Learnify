@@ -51,8 +51,7 @@ const IdeaCardAd = () => {
           {props.email}
         </p>
         <p>{props.description}</p>
-        <p>
-          {" "}
+        <p className="mb-12">
           <b>Requirements:</b> {props.requirements}
         </p>
         <Link
@@ -86,20 +85,20 @@ const IdeaCardAd = () => {
 
   return (
     <div
-      className={`flex min-h-[550px] h-fit w-full py-20 -mb-20 ${
+      className={`flex min-h-[550px] pt-12 h-fit w-full ${
         colorMode === "dark"
           ? "bg-gray-900 text-gray-200"
           : "bg-gray-50 text-gray-800"
       }`}
     >
       <div
-        className={`w-fit mx-32 flex flex-col justify-center shadow-md ${
+        className={`w-full md:w-fit mx-2  md:mx-32 flex flex-col justify-start shadow-md ${
           colorMode === "dark" ? "shadow-gray-700" : "shadow-gray-400"
         } p-5`}
       >
-        <p className="text-5xl font-bold text-center p-6">IDEAS</p>
+        <p className="text-5xl font-bold text-center p-4">IDEAS</p>
         {ideas.length > 0 ? (
-          <div className="flex gap-12 items-start justify-start mx-28 h-fit flex-col mb-10 ">
+          <div className="flex gap-12 items-start justify-start mx-4 md:mx-28 h-fit flex-col mb-10 ">
             {ideas.map((item, key) => (
               <Card key={key} props={item} />
             ))}

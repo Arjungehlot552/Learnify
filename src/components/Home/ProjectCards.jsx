@@ -50,7 +50,7 @@ const ProjectCards = () => {
       <div className="h-56 w-full md:w-56 outline rounded-md outline-slate-400 relative group">
         <Link to={props.link}>
           <img className="h-full w-full object-cover" src={props.img} alt={props.title} />
-          <div className="absolute inset-0 rounded-md bg-black/30 flex items-center justify-center -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-200">
+          <div className="absolute inset-0 rounded-md bg-black/40 flex items-center justify-center -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-200">
             <p className="text-white font-semibold text-xl text-center px-2">
               {props.title}
             </p>

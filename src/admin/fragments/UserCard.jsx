@@ -16,26 +16,27 @@ export const UserCard = ({ item }) => {
     try {
       console.log(item._id);
       const res = await axios.delete(
-        `http://localhost:4000/api/admin/deleteUser/${item._id}`, 
+        `http://localhost:4000/api/admin/deleteUser/${item._id}`,
         { withCredentials: true }
       );
-  
+
       console.log(res);
       toast.success("User deleted successfully!");
-      setTimeout(()=>{window.location.reload()},2000)
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     } catch (error) {
       console.log("Error while deleting user!", error);
       toast.error("Error while deleting user.");
     }
   };
-  
 
   return (
     <div
       style={{ boxShadow: "0 0 5px 2px pink" }}
       className="p-5 min-w-96 rounded-sm text-xl h-fit flex flex-col gap-3"
     >
-            <p className="text-center">
+      <p className="text-center">
         <b> {item.name}</b>
       </p>
       <p>

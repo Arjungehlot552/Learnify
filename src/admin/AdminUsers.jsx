@@ -19,9 +19,9 @@ const AdminUsers = () => {
   }, []);
 
   return (
-    <div className="pt-20 flex flex-wrap items-center w-full justify-center gap-10">
+    <div className="pt-12 h-fit  flex flex-wrap items-center justify-center gap-10">
       <p className="text-5xl text-center font-bold">Users</p>
-      <div className="flex flex-wrap items-center w-full justify-center gap-16">
+      <div className="flex flex-wrap mx-3 items-center justify-center gap-16">
         {users.map((item) => (
           <UserCard key={item._id} item={item} />
         ))}
@@ -29,5 +29,5 @@ const AdminUsers = () => {
     </div>
   );
 };
-
+ 
 export default AdminUsers;

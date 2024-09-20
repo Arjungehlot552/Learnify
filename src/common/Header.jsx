@@ -90,7 +90,7 @@ const Header = () => {
   
       <div className="flex-1 flex justify-end items-center">
         {(user || mentor || isAdmin) ? (
-          <div className="flex items-center justify-end gap-6 sm:gap-10">
+          <div className="flex items-center justify-end gap-3 md:gap-6 sm:gap-10">
             <button
               onClick={handleLogout}
               className="h-10 w-24 sm:w-32 font-bold tracking-wider text-slate-600 outline outline-slate-500 outline-2 text-lg rounded-xl flex items-center justify-center gap-2 hover:bg-blue-700 hover:text-white duration-700"

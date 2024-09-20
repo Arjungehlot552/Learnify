@@ -29,7 +29,7 @@ const SmallProject2 = ({ item }) => {
     <>
       <div
         style={{ boxShadow: "0 0 5px 0.2px blue" }}
-        className="h-[400px] relative w-80 rounded-lg flex flex-col items-center justify-start gap-2 p-3"
+        className="h-[450px] relative w-80 rounded-lg flex flex-col items-center justify-start gap-2 p-3"
       >
         <img
           className="h-[35%] w-[100%] object-cover shadow-md rounded-lg "
