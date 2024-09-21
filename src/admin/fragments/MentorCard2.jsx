@@ -9,7 +9,7 @@ const MentorCa = ({ props }) => {
     try {
       console.log("heelo", props._id);
       const res = await axios.delete(
-        `http://localhost:4000/api/admin/deleteMentor/${props._id}`,
+        `https://learnify-backend-wmjk.onrender.com/api/admin/deleteMentor/${props._id}`,
         {},
         { withCredentials: true }
       );
@@ -63,7 +63,7 @@ const MentorCard2 = () => {
     const fetchMentors = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:4000/api/mentor/getMentors"
+          "https://learnify-backend-wmjk.onrender.com/api/mentor/getMentors"
         );
         console.log(res.data.data);
         setMentors(res.data.data);

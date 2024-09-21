@@ -14,7 +14,7 @@ const IdeaCardAd = () => {
       try {
         console.log("heelo", props._id);
         const res = await axios.delete(
-          `http://localhost:4000/api/admin/deleteIdea/${props._id}`,
+          `https://learnify-backend-wmjk.onrender.com/api/admin/deleteIdea/${props._id}`,
           {},
           { withCredentials: true }
         );

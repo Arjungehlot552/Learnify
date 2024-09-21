@@ -14,10 +14,10 @@ const ProDiaAd = () => {
     const fetchProjects = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:4000/api/project/getAllProjects"
+          "https://learnify-backend-wmjk.onrender.com/api/project/getAllProjects"
         );
         const res2 = await axios.get(
-          "http://localhost:4000/api/mentor/projects"
+          "https://learnify-backend-wmjk.onrender.com/api/mentor/projects"
         );
         console.log(res.data.data);
         setMentors(res2.data.data);

@@ -16,7 +16,7 @@ export const UserCard = ({ item }) => {
     try {
       console.log(item._id);
       const res = await axios.delete(
-        `http://localhost:4000/api/admin/deleteUser/${item._id}`,
+        `https://learnify-backend-wmjk.onrender.com/api/admin/deleteUser/${item._id}`,
         { withCredentials: true }
       );
 

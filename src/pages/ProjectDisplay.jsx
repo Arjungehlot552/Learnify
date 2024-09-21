@@ -14,7 +14,7 @@ const ProjectDisplay = () => {
   useEffect(()=>{
     const fetchProjects = async() => {
       try {
-        const res = await axios.get("http://localhost:4000/api/project/getAllProjects")
+        const res = await axios.get("https://learnify-backend-wmjk.onrender.com/api/project/getAllProjects")
         console.log(res.data.data);
         setProjects(res.data.data.filter((item)=>(item.domain == domain)))
       } catch (error) {

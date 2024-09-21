@@ -38,5 +38,5 @@
     "tailwindcss": "^3.4.10",
     "vite": "^5.4.1"
   },
-  "proxy": "http://localhost:4000"
+  "proxy": "https://learnify-backend-wmjk.onrender.com"
 }

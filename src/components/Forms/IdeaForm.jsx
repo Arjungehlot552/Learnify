@@ -37,7 +37,7 @@ const IdeaForm = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:4000/api/ideas/create-idea",
+        "https://learnify-backend-wmjk.onrender.com/api/ideas/create-idea",
         formData,
         { withCredentials: true}
       );

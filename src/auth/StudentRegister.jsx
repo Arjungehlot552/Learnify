@@ -25,7 +25,7 @@ const StudentRegister = () => {
       return;
     }    
    
-    const res = await axios.post("http://localhost:4000/api/student/register-student",{name,email,password})
+    const res = await axios.post("https://learnify-backend-wmjk.onrender.com/api/student/register-student",{name,email,password})
    
     console.log(res);
     toast.success("Registered successfully!");

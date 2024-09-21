@@ -63,11 +63,11 @@ const UserProfile = () => {
     const fetchIdeas = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:4000/api/ideas/getIdeas`,
+          `https://learnify-backend-wmjk.onrender.com/api/ideas/getIdeas`,
           { withCredentials: true }
         );
         const res2 = await axios.get(
-          "http://localhost:4000/api/project/getAllProjects"
+          "https://learnify-backend-wmjk.onrender.com/api/project/getAllProjects"
         );
         setIdeas(res.data.data.filter((item) => item.email == user.email));
         setProject(res2.data.data.filter((item) => item.email == user.email))

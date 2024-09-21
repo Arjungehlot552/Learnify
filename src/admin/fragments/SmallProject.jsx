@@ -11,7 +11,7 @@ const SmallProject = ({ item }) => {
   const handleDelete = async() => {
     try {
       console.log("heelo",item._id);
-      const res = await axios.delete(`http://localhost:4000/api/admin/deleteProject/${item._id}`,{},{withCredentials:true})
+      const res = await axios.delete(`https://learnify-backend-wmjk.onrender.com/api/admin/deleteProject/${item._id}`,{},{withCredentials:true})
       console.log(res);
       toast.success("Deleted successfully!")
       setTimeout(()=>{window.location.reload()},2000)

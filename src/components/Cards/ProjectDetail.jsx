@@ -15,7 +15,7 @@ const ProjectDetail = () => {
     const fetchProject = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:4000/api/project/getProjectById/${id}`
+          `https://learnify-backend-wmjk.onrender.com/api/project/getProjectById/${id}`
         );
         setProject(res.data.data);
         console.log(res.data.data);

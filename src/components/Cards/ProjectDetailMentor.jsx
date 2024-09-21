@@ -15,7 +15,7 @@ const ProjectDetailMentor = () => {
     const fetchProject = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:4000/api/mentor/getProjectById/${id}`
+          `https://learnify-backend-wmjk.onrender.com/api/mentor/getProjectById/${id}`
         );
         setProject(res.data.data);
         console.log(res.data.data);

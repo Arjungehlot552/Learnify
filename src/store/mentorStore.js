@@ -7,7 +7,7 @@ const useMentorStore = create((set) => ({
   fetchMentor: async () => {
     try {
       const res = await axios.post(
-        "http://localhost:4000/api/mentor/getMentorUser",
+        "https://learnify-backend-wmjk.onrender.com/api/mentor/getMentorUser",
         {},
         { withCredentials: true }
       );

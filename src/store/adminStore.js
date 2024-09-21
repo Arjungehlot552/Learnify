@@ -12,7 +12,7 @@ const useAdminStore = create((set) => ({
   // adminLogin: async (email, password, navigate) => {
   //   try {
   //     const response = await axios.post(
-  //       "http://localhost:4000/api/admin/login",
+  //       "https://learnify-backend-wmjk.onrender.com/api/admin/login",
   //       {
   //         email,
   //         password,
@@ -34,7 +34,7 @@ const useAdminStore = create((set) => ({
   getAdmin: async () => {
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/admin/getAdmin",{},
+        "https://learnify-backend-wmjk.onrender.com/api/admin/getAdmin",{},
         {
           withCredentials: true,
         }

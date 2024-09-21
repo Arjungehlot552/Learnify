@@ -45,7 +45,7 @@ const ProjectIdea = () => {
     const fetchIdeas = async () => {
       try {
         console.log("Fetching ideas...");
-        const res = await axios.get("http://localhost:4000/api/ideas/getIdeas");
+        const res = await axios.get("https://learnify-backend-wmjk.onrender.com/api/ideas/getIdeas");
         console.log(res.data.data);
         setIdeas(res.data.data);
       } catch (error) {

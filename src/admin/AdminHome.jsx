@@ -20,7 +20,7 @@ export const AdminHome = () => {
     const fetchVals = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:4000/api/admin/getValues"
+          "https://learnify-backend-wmjk.onrender.com/api/admin/getValues"
         );
         console.log(res);
         setStu(res.data.data.users);

@@ -12,7 +12,7 @@ const SmallProject2 = ({ item }) => {
     try {
       // console.log("heelo", item._id);
       const res = await axios.delete(
-        `http://localhost:4000/api/admin/deleteProjectMentor/${item._id}`,
+        `https://learnify-backend-wmjk.onrender.com/api/admin/deleteProjectMentor/${item._id}`,
         {},
         { withCredentials: true }
       );

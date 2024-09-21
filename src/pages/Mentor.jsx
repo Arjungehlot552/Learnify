@@ -14,7 +14,7 @@ const Mentor = () => {
     const fetchMentors = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:4000/api/mentor/getMentors"
+          "https://learnify-backend-wmjk.onrender.com/api/mentor/getMentors"
         );
         console.log(res.data.data);
         setMentors(res.data.data); // Update the state with the fetched data

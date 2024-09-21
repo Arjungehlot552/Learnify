@@ -60,14 +60,14 @@ const Header = () => {
   const handleLogout = async () => {
     try {
       if (isAdmin) {
-        await axios.post("http://localhost:4000/api/admin/logout", {}, { withCredentials: true });
+        await axios.post("https://learnify-backend-wmjk.onrender.com/api/admin/logout", {}, { withCredentials: true });
         toast.success("Admin logged out successfully!");
         setIsAdmin(false);
       } else if (user) {
-        await axios.post("http://localhost:4000/api/student/logout", {}, { withCredentials: true });
+        await axios.post("https://learnify-backend-wmjk.onrender.com/api/student/logout", {}, { withCredentials: true });
         toast.success("User logged out successfully!");
       } else if (mentor) {
-        await axios.post("http://localhost:4000/api/mentor/logout", {}, { withCredentials: true });
+        await axios.post("https://learnify-backend-wmjk.onrender.com/api/mentor/logout", {}, { withCredentials: true });
         toast.success("Mentor logged out successfully!");
       }
       setTimeout(() => {

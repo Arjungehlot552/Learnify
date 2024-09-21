@@ -51,7 +51,7 @@ const College = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/api/project/groupProjects");
+        const res = await axios.get("https://learnify-backend-wmjk.onrender.com/api/project/groupProjects");
         setData(res.data.data);
       } catch (err) {
         console.error('Error fetching projects:', err);

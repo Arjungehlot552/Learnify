@@ -55,7 +55,7 @@ const MentorRegister = () => {
       }
 
       const res = await axios.post(
-        "http://localhost:4000/api/mentor/register-mentor",
+        "https://learnify-backend-wmjk.onrender.com/api/mentor/register-mentor",
         formData,
         {
           headers: {

@@ -52,7 +52,7 @@ const Domain = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:4000/api/project/groupDomainProjects"
+          "https://learnify-backend-wmjk.onrender.com/api/project/groupDomainProjects"
         );
         setData(res.data.data);
       } catch (err) {
