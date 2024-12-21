@@ -23,7 +23,7 @@ const MentorHome = () => {
           Find a mentor specifically aligned with your goals and interests to support and help you achieve your full potential in your chosen domain.
         </p>
         <Link to={"/mentor"}>
-          <button className="h-12 w-full md:w-48 flex justify-center items-center mt-8 md:mt-12 text-base md:text-xl rounded-xl font-semibold gap-4 hover:outline-blue-600 hover:bg-white text-white bg-blue-700 transition-all duration-500 hover:text-black">
+          <button className="h-12 w-full md:w-48 flex justify-center items-center mt-8 md:mt-12 text-base md:text-xl rounded-xl font-semibold gap-4  hover:bg-white border-2 text-white bg-blue-700  transition-all duration-500  hover:text-black">
             Find Mentor!
           </button>
         </Link>
