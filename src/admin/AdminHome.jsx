@@ -81,6 +81,7 @@ export const AdminHome = () => {
     </div>
   </div>
 
+
   <div className="w-full flex flex-wrap justify-center gap-6 md:gap-10 px-6">
     <div className="w-56 h-fit py-5 shadow-md p-5 shadow-red-400 flex items-center justify-center flex-col gap-5 rounded-lg">
       <p className="text-2xl sm:text-3xl font-semibold outline outline-2 w-fit px-1 outline-gray-300 rounded-md">
